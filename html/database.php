@@ -1,11 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "testuser";
-$password = "password";
-$dbname = "hospital";
+include("config.php");
+session_start();
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
