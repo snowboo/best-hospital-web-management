@@ -1,6 +1,6 @@
 <?php
 include '../../resources/config.php';
-// include '../../recources/ChromePhp.php';
+// include '../../resources/ChromePhp.php';
 // ChromePhp::log('Hello console!');
 // ChromePhp::log($_SERVER);
 // ChromePhp::warn('something went wrong!');
@@ -11,8 +11,6 @@ session_start();
 if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "receptionist") {
     header("location:../../login.php");
 }
-
-
 
 ?>
 

@@ -1,6 +1,6 @@
 <table width="600" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
     <tr>
-        <form name="form1" method="post" action="checklogin.php">
+        <form name="form2" method="post" action="checkpatient.php">
             <td>
                 <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
                 <tr>
@@ -24,14 +24,14 @@
                     <td>:</td>
                     <td><input name="address" type="text" id="address"></td>
                 </tr>
-                <!-- sex name and care card #-->
+                <!-- sex and care card #-->
                 <tr>
                     <td width="90">Sex</td>
                     <td width="6">:</td>
                     <td width="160"><input name="sex" type="text" id="sex"></td>
                     <td>Carecard #</td>
                     <td>:</td>
-                    <td><input name="carecard#" type="text" id="carecard#"></td>
+                    <td><input name="carecardnum" type="text" id="carecardnum"></td>
                 </tr>
                 <td>&nbsp;</td>
                 <!--Submit and Cancel button-->
