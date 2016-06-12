@@ -23,6 +23,8 @@ $result = $conn->query($sql);
 
 $count = $result->num_rows;
 // If result matched $myusername and $mypassword, table row must be 1 row
+
+
 if ($count == 1) {
     // Register $myusername, $mypassword and redirect to file "login_success.php"
     $_SESSION['myusername'] = $myusername;
@@ -52,6 +54,12 @@ if ($count == 1) {
     // header("location:login_success.php");
 }
 else {
-    echo "Wrong Username or Password";
+    // Added error message alert instead of redirecting to a new page
+    $error_msg = "Wrong Username or Password";
+            echo '<script type="text/javascript">
+            alert("'.$error_msg.'");
+                window.location= "login.php"; 
+        </script>';
+    
 }
 ?>

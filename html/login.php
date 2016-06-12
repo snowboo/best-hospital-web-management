@@ -19,8 +19,10 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td><input type="submit" name="Submit" value="Login"></td>
+                    <td><input type="submit" name="Submit" value="Login">
+                    <button onclick="history.go(-1);">Cancel </button></td>
                 </tr>
+
                 </table>
             </td>
         </form>
