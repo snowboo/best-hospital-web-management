@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+include("resources/config.php");
 session_start();
 
 $sql = "select * from Doctor";

@@ -11,4 +11,13 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+//Common Paths
+/*
+defined("ROOT_PATH")
+  or define("ROOT_PATH", realpath(dirname(__FILE__).'../'));
+
+defined("RESOURCE_PATH")
+  or define("RESOURCE_PATH", realpath(dirname(__FILE__).'../'));
+ */
 ?>

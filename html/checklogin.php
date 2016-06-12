@@ -1,7 +1,7 @@
 <?php
 
-include 'ChromePhp.php';
-include 'config.php';
+include 'resources/ChromePhp.php';
+include 'resources/config.php';
 
 session_start();
 
@@ -36,11 +36,14 @@ if ($count == 1) {
     $nurseResult = $conn->query($nurseQuery);
     $receptionistResult = $conn->query($receptionistQuery);
     if ($docResult->num_rows == 1) {
-        echo "Doctor";
+        $_SESSION['role']= "doctor";
+        header("location:views/doctor/doctor_home.php");
     } else if ($nurseResult->num_rows == 1) {
-        echo "Nurse";
+        $_SESSION['role']= "nurse";
+        header("location:views/nurse/nurse_home.php");
     } else if ($receptionistResult->num_rows == 1) {
-        echo "Receptionist";
+       $_SESSION['role']="receptionist";
+      header("location:views/receptionist/receptionist_home.php");
     } else {
         $employeeRow = $result->fetch_assoc();
         echo "Welcome " . $employeeRow['fname'] . " " . $employeeRow['lname'];
