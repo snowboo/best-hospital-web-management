@@ -3,6 +3,7 @@
 <html>
 <head>
 <h1>Hospital Management System</h1>
+<p>&nbsp;</p>
 <!-- Bootstrap -->
 <link href="web/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 <link href="web/css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -21,11 +22,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-
-                <li ><a href="index.php">Home</a></li>
-
-                <li ><a href="patient_checkin.php">Patient CheckIn</a></li>
-                <li ><a href="admin_login.php">Admin LogIn</a></li>
+                <li ><a href="homepage.html">Home</a></li>
+                <li ><a href="login.php">Admin LogIn</a></li>
               </ul>
             </div>
         </nav>
@@ -35,40 +33,7 @@
 
 <div class="main_btm"><!-- start main_btm -->
      <div class="container" >
-        <div class="card login_container" >
-        <h3>Patient Check in</h3>
-
-
-            <img id="profile-img" class="profile-img-card" src="web/images/patient.png" />
-            <p id="profile-name" class="profile-name-card"></p>
-            <form class="form-signin" method="post" action="dologin.php">
-                <span id="reauth-email" class="reauth-email"></span>
-                <input type="text" id="patient_id" name="patient_id" class="form-control" placeholder="Patient ID" required autofocus>
-                <input type="text" id="name" name="name" class="form-control" placeholder="Name" required autofocus>
-                <input type="text" id="sin" name="sin" class="form-control" placeholder="SIN" required autofocus>
-
-
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-            </form><!-- /form -->
-
-        </div>
-
-        <div class="card login_container" >
-        <h3>Admin Log in</h3>
-
-            <img id="profile-img" class="profile-img-card" src="web/images/doctor.png" />
-            <p id="profile-name" class="profile-name-card"></p>
-            <form class="form-signin" method="post" action="doctor_login.php">
-                <span id="reauth-email" class="reauth-email"></span>
-                <input type="text" id="admin_id" name="admin_id" class="form-control" placeholder="Admin Id" required autofocus>
-                <input type="text" id="name" name="name" class="form-control" placeholder="Name" required autofocus>
-                <input type="text" id="password" name="password" class="form-control" placeholder="password" required autofocus>
-
-
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-            </form><!-- /form -->
-
-        </div>
+        <h3>WELCOME!</h3>
     </div><!-- /container -->
 </div>
 
