@@ -16,16 +16,18 @@ DROP TABLE Doctor;
 DROP TABLE Employee;
 */
 
-create table Employee(fname TEXT, lname TEXT, email TEXT, eid INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY);
-
-insert into Employee values ("jr", "kim", "drkim@hospital.com", 0);
+create table Employee(fname TEXT,
+  lname TEXT,
+  email VARCHAR(40) NOT NULL,
+  eid INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  UNIQUE (email));
 insert into Employee(fname, lname, email) values ("vin", "chan", "vchan@hospital.com");
 insert into Employee(fname, lname, email) values ("yves", "chan", "ychan@hospital.com");
 insert into Employee(fname, lname, email) values ("hai", "hoang", "hhoang@hospital.com");
 insert into Employee(fname, lname, email) values ("oscar", "lu", "olu@hospital.com");
 insert into Employee(fname, lname, email) values ("yushen", "zu", "yzu@hospital.com");
 insert into Employee(fname, lname, email) values ("tingting", "tai", "tttai@hospital.com");
-insert into Employee(fname, lname, email) values ("hai", "hoang", "hhoang@hospital.com");
+insert into Employee(fname, lname, email) values ("haip", "hoangp", "hhoangp@hospital.com");
 insert into Employee(fname, lname, email) values ("steve", "lim", "slim@hospital.com");
 insert into Employee(fname, lname, email) values ("will", "smith", "wsmith@hospital.com");
 insert into Employee(fname, lname, email) values ("james", "harden", "jharden@hospital.com");
@@ -72,7 +74,8 @@ create table Patient_Attendedby(fname TEXT,
     sex TEXT,
     carecardnum INTEGER PRIMARY KEY,
     eid INTEGER,
-    FOREIGN KEY fk_employee(eid) REFERENCES Employee(eid));
+    FOREIGN KEY fk_employee(eid) REFERENCES Employee(eid),
+    CHECK(carecardnum < 10000 AND carecardnum > 999));
 
 insert into Patient_Attendedby values ("drizzy", "drake", '1967-11-13', '123 fake st', 'male', '1234', '1');
 insert into Patient_Attendedby values ("jessica", "alba", '1984-10-12', '13 some st', 'female', '2345', '1');
@@ -103,6 +106,7 @@ create table Oversees(eid INTEGER,
     FOREIGN KEY fk_employee(eid) REFERENCES Employee(eid),
     FOREIGN KEY fk_room(floornum, roomnum) REFERENCES Room_Assignedto(floornum, roomnum));
 
+
 insert into Oversees values (6, 1, 1);
 insert into Oversees values(7, 1, 1);
 insert into Oversees values (8, 2, 1);
@@ -124,20 +128,23 @@ insert into Prescription values ("aspirin", 4, 579, 2);
 create table Prescribes(eid INTEGER,
     prescriptionID INTEGER,
     carecardnum INTEGER,
+    loggedDate DATE,
     PRIMARY KEY (eid, prescriptionID, carecardnum),
     FOREIGN KEY fk_employee(eid) REFERENCES Employee(eid),
     FOREIGN KEY fk_prescription(prescriptionID) REFERENCES Prescription(prescriptionID),
-    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum));
+    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum),
+    CHECK (carecardnum < 10000 AND carecardnum > 999));
 
-insert into Prescribes values (1, 0, 1234);
-insert into Prescribes values (2, 1, 2345);
-insert into Prescribes values (3, 3, 2920);
-insert into Prescribes values (4, 4, 5620);
-insert into Prescribes values (5, 2, 8204);
+insert into Prescribes values (1, 0, 1234, '2015-04-13 11:11:11');
+insert into Prescribes values (1, 1, 2345, '2015-06-13 11:11:09');
+insert into Prescribes values (2, 3, 8204, '2015-05-13 11:11:10');
+insert into Prescribes values (3, 4, 2920, '2015-07-13 11:11:12');
+insert into Prescribes values (5, 2, 5620, '2015-04-17 11:11:13');
 
 create table MedicalRecord_Has(mid INTEGER, medicalStatus TEXT, carecardnum INTEGER,
     PRIMARY KEY (mid, carecardnum),
-    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum));
+    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum)
+    ON DELETE CASCADE);
 
 Insert into MedicalRecord_Has values(1, "diarrhea", 1234);
 Insert into MedicalRecord_Has values(2, "heart burn", 2345);
@@ -149,7 +156,8 @@ create table ChecksIn(eid INTEGER,
     carecardnum INTEGER,
     PRIMARY KEY (eid, carecardnum),
     FOREIGN KEY fk_employee(eid) REFERENCES Employee(eid),
-    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum));
+    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum),
+    CHECK (carecardnum < 10000 AND carecardnum>999)); 
 
 insert into ChecksIn values (11, 1234);
 insert into ChecksIn values (12, 2345);
@@ -161,7 +169,8 @@ create table ManagedBy(loggedDate TIMESTAMP, mid INTEGER, carecardnum INTEGER, e
     PRIMARY KEY (mid, carecardnum, eid),
     FOREIGN KEY fk_medicalrecord(mid) REFERENCES MedicalRecord_Has(mid),
     FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum),
-    FOREIGN KEY fk_employee(eid) REFERENCES Employee(eid));
+    FOREIGN KEY fk_employee(eid) REFERENCES Employee(eid),
+    CHECK (carecardnum<10000 AND carecardnum > 999));
 
 Insert into ManagedBy values ('2015-04-13 11:11:11', 1, 1234, 1);
 Insert into ManagedBy values ('2015-06-13 11:11:09', 2, 2345, 2);
