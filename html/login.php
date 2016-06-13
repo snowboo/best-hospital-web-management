@@ -7,14 +7,14 @@
                     <td colspan="3"><strong>Member Login </strong></td>
                 </tr>
                 <tr>
-                    <td width="78">Username</td>
+                    <td width="78">Email</td>
                     <td width="6">:</td>
                     <td width="294"><input name="myusername" type="text" id="myusername"></td>
                 </tr>
                 <tr>
                     <td>Password</td>
                     <td>:</td>
-                    <td><input name="mypassword" type="text" id="mypassword"></td>
+                    <td><input name="mypassword" type="password" id="mypassword"></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>

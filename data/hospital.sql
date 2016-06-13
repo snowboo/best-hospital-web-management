@@ -21,6 +21,7 @@ create table Employee(fname TEXT,
   email VARCHAR(40) NOT NULL,
   eid INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
   UNIQUE (email));
+insert into Employee(fname, lname, email) values ("jr", "kim", "drkim@hospital.com");
 insert into Employee(fname, lname, email) values ("vin", "chan", "vchan@hospital.com");
 insert into Employee(fname, lname, email) values ("yves", "chan", "ychan@hospital.com");
 insert into Employee(fname, lname, email) values ("hai", "hoang", "hhoang@hospital.com");
@@ -69,7 +70,7 @@ insert into Receptionist values (15);
 
 create table Patient_Attendedby(fname TEXT,
     lname TEXT,
-    dob DATE,
+    age INTEGER,
     address TEXT,
     sex TEXT,
     carecardnum INTEGER PRIMARY KEY,
@@ -77,11 +78,11 @@ create table Patient_Attendedby(fname TEXT,
     FOREIGN KEY fk_employee(eid) REFERENCES Employee(eid),
     CHECK(carecardnum < 10000 AND carecardnum > 999));
 
-insert into Patient_Attendedby values ("drizzy", "drake", '1967-11-13', '123 fake st', 'male', '1234', '1');
-insert into Patient_Attendedby values ("jessica", "alba", '1984-10-12', '13 some st', 'female', '2345', '1');
-insert into Patient_Attendedby values ("sansa", "stark", '1993-05-24', '23 another st', 'female', '8204', '2');
-insert into Patient_Attendedby values ("jon", "snow", '1977-12-12', '1 wall st', 'male', '2920', '3');
-insert into Patient_Attendedby values ("kate", "beckinsale", '1940-04-15', '45 dewd st', 'female', '5620', '5');
+insert into Patient_Attendedby values ("drizzy", "drake", '18', '123 fake st', 'male', '1234', '1');
+insert into Patient_Attendedby values ("jessica", "alba", '25', '13 some st', 'female', '2345', '1');
+insert into Patient_Attendedby values ("sansa", "stark", '12', '23 another st', 'female', '8204', '2');
+insert into Patient_Attendedby values ("jon", "snow", '13', '1 wall st', 'male', '2920', '3');
+insert into Patient_Attendedby values ("kate", "beckinsale", '69', '45 dewd st', 'female', '5620', '5');
 
 create table Room_Assignedto(floornum INTEGER,
     roomnum INTEGER,
