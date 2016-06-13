@@ -11,8 +11,8 @@
 <div id="header">
     <h1>Dashboard</h1>
     <ul class="nav global">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">My Patients</a></li>
-        <li><a href="#">Medical Records</a></li>
+        <li><a href="/views/doctor/doctor_home.php">Home</a></li>
+        <li><a href="/views/doctor/doctor_patients.php">My Patients</a></li>
+        <li><a href="/views/doctor/medicalrecordsearch.php">Medical Records</a></li>
     </ul>
 </div>

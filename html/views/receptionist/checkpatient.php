@@ -27,14 +27,14 @@ $carecardnum   = $_POST['carecardnum'];
 // $carecardnum = $conn->escape_string($carecardnum);
 
 $sql = "
-SELECT * 
-from $tbl_name 
-WHERE fname = '$fname' AND 
+SELECT *
+from $tbl_name
+WHERE fname = '$fname' AND
 lname = '$lname' AND
-dob = '$dob' AND 
-address = '$address' AND 
-sex = '$sex' AND 
-carecardnum = '$carecardnum' 
+dob = '$dob' AND
+address = '$address' AND
+sex = '$sex' AND
+carecardnum = '$carecardnum'
 ";
 
 $result = $conn->query($sql);
@@ -48,7 +48,7 @@ if($count == 1) {
 	$error_msg = "This patient already exists in the database";
             echo '<script type="text/javascript">
             alert("'.$error_msg.'");
-                window.location= "patient_checkin.php"; 
+                window.location= "patient_checkin.php";
         </script>';
 }
 // if the input patient doesn't exist in database, add the patient into the database
@@ -61,7 +61,7 @@ else {
 	$new_patient_msg = "This patient is new!";
             echo '<script type="text/javascript">
             alert("'.$new_patient_msg.'");
-                window.location= "assign_doctor.php"; 
+                window.location= "assign_doctor.php";
         </script>';
 
 	// if ($conn->query($sql) === TRUE) {
