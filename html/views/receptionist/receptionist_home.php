@@ -20,7 +20,7 @@ if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "receptionist") {
         <br>
         <br>
 
-        Receptionist Homepage
+        Receptionist Dashboard
 
         <br>
 
@@ -28,3 +28,8 @@ if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "receptionist") {
     	</a></button>
     </body>
 </html>
+
+<?php
+echo "<br>";
+require_once("../../resources/templates/footer.php");
+?> 

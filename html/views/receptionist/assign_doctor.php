@@ -1,4 +1,4 @@
-<table width="600" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+<table width="500" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
     <tr>
         <form name="form3" method="post" action="check_assigndoctor.php">
             <td>
@@ -8,9 +8,9 @@
                 </tr>
                 <!-- Employee ID-->
                 <tr>
-                    <td width="90">Doctor ID</td>
+                    <td width="30">Doctor ID</td>
                     <td width="6">:</td>
-                    <td width="120"><input name="fname" type="text" id="fname"></td>
+                    <td width="100"><input name="eid" type="text" id="eid"></td>
                 </tr>
 
                 <td>&nbsp;</td>
