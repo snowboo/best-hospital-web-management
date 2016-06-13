@@ -1,5 +1,8 @@
 <?php
+
 session_start();
+//include "../../resources/config.php";
+//include "../../resources/ChromePhp.php";
 include($_SERVER["DOCUMENT_ROOT"] . "/resources/config.php");
 include($_SERVER["DOCUMENT_ROOT"] . "/resources/ChromePhp.php");
 //ChromePhp::log($_SESSION['myusername']);
