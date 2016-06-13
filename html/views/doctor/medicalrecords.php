@@ -1,16 +1,17 @@
 <?php
 session_start();
-?>
-<?php
-include($_SERVER["DOCUMENT_ROOT"] . "/resources/config.php");
-require_once($_SERVER["DOCUMENT_ROOT"] ."/resources/templates/doctorheader.php");
-
 if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
     header("location:../../login.php");
 }
 if (!isset($_SESSION['carecardnum'])) {
     header("location:medicalrecordsearch.php");
 }
+?>
+<?php
+include($_SERVER["DOCUMENT_ROOT"] . "/resources/config.php");
+require_once($_SERVER["DOCUMENT_ROOT"] ."/resources/templates/doctorheader.php");
+
+
 
 $carecardnum = $_SESSION['carecardnum'];
 $sql = "SELECT * from MedicalRecord_Has WHERE carecardnum = '$carecardnum'";
