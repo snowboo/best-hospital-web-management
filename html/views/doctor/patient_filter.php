@@ -9,7 +9,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] ."/resources/templates/doctorheader.php")
 if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
     header("location:../../login.php");
 }
-
 ?>
 
 <form method="post" action="patient_filter_search.php">
@@ -30,7 +29,7 @@ if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
     <input type="text" name="carecardnum" id="carecardnum"> <br/>
     Patient Age:
     "<","=","<",">=", "<=", "<>" <input type="text" name="operator" id="operator" value="<">
-    <input type="text" name="age" id="age" value="age">
+    <input type="number" name="age" id="age">
     <input type="submit" name="submit" value="submit">
 </form>
 

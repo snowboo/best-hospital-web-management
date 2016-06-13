@@ -1,10 +1,13 @@
 <?php
-// session_start();
+session_start();
 ?>
-<?php
 
-include '../../resources/ChromePhp.php';
-include '../../resources/config.php';
+<?php
+//include '../../resources/ChromePhp.php';
+//include '../../resources/config.php';
+include ($_SERVER["DOCUMENT_ROOT"] . "/resources/config.php");
+include ($_SERVER["DOCUMENT_ROOT"] . "/resources/ChromePhp.php");
+
 
 //TODO AS FUCCCCK
 $tbl_name="Patient_Attendedby"; // Table name
@@ -22,6 +25,7 @@ $operator = $_POST['operator'];
 
 $selectionArray = array($fnamec, $lnamec, $carecardnumc, $agec, $sexc, $addressc);
 //Remove empty values from selection array
+//ChromePhp::log($selectionArray);
 
 $select="";
 foreach ($selectionArray as $attribute) {
@@ -55,7 +59,17 @@ $where = rtrim($where, 'AND ');
 
 $sql = "SELECT $select from $tbl_name WHERE $where";
 $result = $conn->query($sql);
+$data = array();
+
+while($row = $result->fetch_assoc()) {
+    $data[] = $row;
+}
+
+$colNames = array_keys(reset($data));
+
 $count = $result->num_rows;
+
+
 
 if ($count >= 1) {
     $_SESSION['carecardnum'] = $carecardnum;
@@ -69,6 +83,4 @@ if ($count >= 1) {
 }
 
 ?>
-
-
 

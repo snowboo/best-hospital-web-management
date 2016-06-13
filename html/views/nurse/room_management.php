@@ -1,6 +1,8 @@
 <?php
-
 session_start();
+?>
+
+<?php
 //include "../../resources/config.php";
 //include "../../resources/ChromePhp.php";
 include($_SERVER["DOCUMENT_ROOT"] . "/resources/config.php");
