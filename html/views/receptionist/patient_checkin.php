@@ -15,11 +15,11 @@
                     <td>:</td>
                     <td><input name="lname" type="text" id="lname"></td>
                 </tr>
-                <!-- DOB and address-->
+                <!-- age and address-->
                 <tr>
-                    <td width="90">Date of Birth</td>
+                    <td width="90">Age</td>
                     <td width="6">:</td>
-                    <td width="160"><input name="dob" type="text" id="dob"></td>
+                    <td width="160"><input name="age" type="text" id="age"></td>
                     <td>Address</td>
                     <td>:</td>
                     <td><input name="address" type="text" id="address"></td>
