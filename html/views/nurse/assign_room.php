@@ -20,19 +20,17 @@ $carecardnum = $_POST['carecardnum'];
 //$roomnum = stripslashes($roomnum);
 //$floornum = stripslashes($floornum);
 //$carecardnum = stripslashes($carecardnum);
-
-$sql="
-SELECT * 
-FROM $tbl_name 
-WHERE roomnum=$roomnum 
-AND floornum=$floornum
-";
-
+$sql="select * from Room_Assignedto, Patient_Attendedby p2 where roomnum = $roomnum AND floornum = $floornum AND p2.carecardnum = $carecardnum";
 $result = $conn->query($sql);
 
 $count = $result->num_rows;
 
-if ($count == 1 && $result->fetch_assoc()['carecardnum'] != $carecardnum) {
+if ($count == 0) {
+           echo '<script type="text/javascript">
+            alert("Patient Not Found");
+                window.location= "room_management.php"; 
+        </script>';
+} else if ($result->fetch_assoc()['p2.carecardnum'] != $carecardnum) {
 // update
   $sql="
 UPDATE $tbl_name SET 
@@ -48,8 +46,7 @@ $conn->query($sql);
                 window.location= "room_management.php"; 
         </script>';
 
-}
-else
+} else
 {
   //insert
   $sql="

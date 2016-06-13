@@ -74,3 +74,8 @@ $count = $result->num_rows;
 
     </body>
 </html>
+
+<?php
+ echo "<br/>";
+ require_once("../../resources/templates/footer.php");
+?>

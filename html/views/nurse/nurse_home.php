@@ -21,3 +21,8 @@ if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "nurse") {
     <button><a href="room_management.php">Room Management</a></button>
     </body>
 </html>
+
+<?php
+  echo "<br/>";
+  require_once("../../resources/templates/footer.php");
+?>
