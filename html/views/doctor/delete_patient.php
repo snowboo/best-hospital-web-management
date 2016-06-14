@@ -1,19 +1,15 @@
 <?php
 session_start();
-
-include '../../resources/ChromePhp.php';
-include '../../resources/config.php';
-
-if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
-    header("location:../../login.php");
-}
 ?>
 <?php
-//include($_SERVER["DOCUMENT_ROOT"] . "/resources/config.php");
-// include($_SERVER["DOCUMENT_ROOT"] . "/resources/ChromePhp.php");
-//require_once($_SERVER["DOCUMENT_ROOT"] ."/resources/templates/doctorheader.php");
-// ChromePhp::log('Hello console!');
-// ChromePhp::warn('something went wrong!');
+include '../../resources/ChromePhp.php';
+include '../../resources/config.php';
+require_once('../../resources/templates/doctorheader.php');
+
+// check if user is a doctor 
+if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
+    header("location:../../html/login.php");
+}
 
 $myEID = $_SESSION['mypassword'];
 $patientQuery = "SELECT * FROM Patient_Attendedby WHERE eid = '$myEID'";
@@ -37,9 +33,8 @@ while($allRow = $allResult->fetch_assoc()) {
 }
 
 ?>
-
-<h3>My Patients</h3>
-<table class="table table-hover">
+<h3>My Current Patients</h3>
+<table border="1">
     <tr>
         <?php
            // print the header
@@ -60,33 +55,15 @@ while($allRow = $allResult->fetch_assoc()) {
     ?>
 </table>
 
-<a class="btn btn-success" href="delete_patient.php">Remove Patient</a>
-<a class="btn btn-success" href="delete_prescrption.php">Delete Prescrption</a>
-<a class="btn btn-success" href="delete_medicalRecord.php">Delete Medical Record</a>
-
-
-<h3>All Patients</h3>
-<table class="table table-hover">
-    <tr>
-        <?php
-           // print the header
-           foreach($colNames as $colName) {
-              echo "<th> $colName </th>";
-           }
-        ?>
-    </tr>
-    <?php
-        // print the rows
-        foreach($allData as $allRow) {
-            echo "<tr>";
-            foreach($colNames as $colName) {
-                echo "<td>".$allRow[$colName]."</td>";
-            }
-            echo "</tr>";
-        }
-    ?>
-</table>
+</br>
+<h3>Remove Patient</h3>
+<form method="post" action="delete_patient_CCNo.php">
+    CareCard Number:
+    <input type="text" name="carecardnum" id="carecardnum">
+    <input type="submit" name="submit" value="submit">
+</form>
 
 <?php
+    echo "<br>";
     require_once("../../resources/templates/footer.php");
 ?>

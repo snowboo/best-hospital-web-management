@@ -33,7 +33,7 @@ while($allRow = $allResult->fetch_assoc()) {
 }
 
 ?>
-<h3>My Current Patients</h3>
+<h3>My Current Patients's Perscriptions</h3>
 <table border="1">
     <tr>
         <?php
@@ -56,8 +56,8 @@ while($allRow = $allResult->fetch_assoc()) {
 </table>
 
 </br>
-<h3>Delete Patient</h3>
-<form method="post" action="delete_patient_CCNo.php">
+<h3>Delete Perscription</h3>
+<form method="post" action="delete_perscription_ID.php">
     CareCard Number:
     <input type="text" name="carecardnum" id="carecardnum">
     <input type="submit" name="submit" value="submit">
