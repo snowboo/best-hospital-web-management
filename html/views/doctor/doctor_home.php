@@ -79,6 +79,5 @@ while($allRow = $allResult->fetch_assoc()) {
 </table>
 
 <?php
-    echo "<br>";
     require_once("../../resources/templates/footer.php");
 ?>
