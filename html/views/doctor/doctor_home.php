@@ -22,7 +22,7 @@ if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
 $myEID = $_SESSION['mypassword'];
 
 //query for my patients
-$patientQuery = "SELECT * FROM Patient_Attendedby WHERE eid = '$myEID'";
+$patientQuery = "SELECT * FROM Patient_Attendedby WHERE eid = '$myEID';";
 $patientResult = $conn->query($patientQuery);
 
 $patientCount = $patientResult->num_rows;
@@ -34,7 +34,7 @@ while($row = $patientResult->fetch_assoc()) {
 }
 
 // query for all patients
-$allPatientsQuery = "SELECT * FROM Patient_Attendedby";
+$allPatientsQuery = "SELECT * FROM Patient_Attendedby;";
 $allResult = $conn->query($allPatientsQuery);
 
 $allData = array();
@@ -54,7 +54,7 @@ WHERE NOT EXISTS
     WHERE PTN.prescriptionID NOT IN
     (SELECT P.prescriptionID
     FROM Prescribes P
-    WHERE P.carecardnum = PA.carecardnum))";
+    WHERE P.carecardnum = PA.carecardnum));";
 
 $specialAttentionResult  = $conn->query($specialAttentionQuery);
 

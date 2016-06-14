@@ -13,9 +13,7 @@ $MID = $_POST['MID'];
 $carecardnum= $_POST['carecardnum'];
 
 // delete a record 
-$sql = "DELETE FROM $tbl_name WHERE mid = $MID AND carecardnum = $carecardnum 
-        IN (SELECT * FROM Patient_Attendedby p, MedicalRecord_Has m
-        WHERE p.carecardnum = m.carecardnum AND $myEID = p.eid)";
+$sql = "DELETE FROM $tbl_name WHERE mid='$MID' AND carecardnum=$carecardnum;";
 
 $result = $conn->query($sql);
 
@@ -34,7 +32,7 @@ if (is_int($MID) == FALSE || $conn->query($sql) === FALSE){
 
 } else if ($conn->query($sql) === TRUE) {
 	echo '<script type="text/javascript">
-            alert(Prescription '.$MID.') deleted successfully");
+            alert(Record '.$MID.') deleted successfully");
             window.location="delete_MR.php";
           </script>';
 }

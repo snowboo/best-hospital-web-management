@@ -17,7 +17,7 @@ $myEID = $_SESSION['mypassword'];
 // query for all my patients
 $sql = "SELECT m.mid as 'Record ID', pat.fname as 'First Name', pat.lname 'Last Name', pat.carecardnum 'CareCard Number', m.medicalStatus as 'Status' 
         FROM Patient_Attendedby pat, MedicalRecord_Has m
-        WHERE pat.carecardnum = m.carecardnum AND $myEID = pat.eid";
+        WHERE pat.carecardnum = m.carecardnum AND $myEID = pat.eid;";
 
 $result = $conn->query($sql);
 $data = array();
