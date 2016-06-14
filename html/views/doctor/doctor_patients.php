@@ -54,15 +54,13 @@ $colNames = array_keys(reset($data));
 
             }
             // save each patient into the session
+            // TODO: remove these sessions if not used (currently passing values through URL)
             $_SESSION[$index . "_" . 'carecardnum'] = $row['CardNo'];
-            echo "<td>"."<a href='/views/doctor/prescriptions.php' class='btn btn-success'>Prescribe</a>" ."</td>";
-            echo "<td>"."<a class='btn btn-warning'>New Record</a>" ."</td>";
+            echo "<td>"."<a href='/views/doctor/prescribe.php?cardnum=". $row['CardNo'] . "'" . " class='btn btn-success'>Prescribe</a>" ."</td>";
+            echo "<td>"."<a href='/views/doctor/createmedicalrecord.php?cardnum=". $row['CardNo'] . "'" . " class='btn btn-warning'>New Record</a>" ."</td>";
             echo "</tr>";
             $index++;
         }
-        // echo drake and john's care card numbers
-        echo $_SESSION['0_carecardnum'];
-        echo $_SESSION['1_carecardnum'];
     ?>
 </table>
 
