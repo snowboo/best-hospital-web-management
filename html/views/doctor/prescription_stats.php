@@ -33,11 +33,11 @@ while($allRow = $medicineResult->fetch_assoc()) {
 }
 
 $colNames2 = array_keys(reset($allData));
-
 ?>
-
+<br>
+<div class="col-md-6">
 <h3>Number of Patients</h3>
-<table border="1">
+<table class="table table-hover">
     <tr>
         <?php
            // print the header
@@ -57,9 +57,10 @@ $colNames2 = array_keys(reset($allData));
         }
     ?>
 </table>
-
+</div>
+<div class="col-md-6">
 <h3>Drugs Prescribed</h3>
-<table border="1">
+<table class="table table-hover">
     <tr>
         <?php
            // print the header
@@ -79,6 +80,7 @@ $colNames2 = array_keys(reset($allData));
         }
     ?>
 </table>
+</div>
 
 
 <form method="post" action="prescription_stats_search.php">
@@ -86,7 +88,7 @@ $colNames2 = array_keys(reset($allData));
     Youngest Patient <input type="radio" name="age" id="age" value="young"> <br/>
     Oldest Patient <input type="radio" name="age" id="age" value="old"> <br/>
     <br/>
-    
+
     <h3>Search Prescription:</h3> <br>
     Number of Prescriptions <input type="radio" name="choice" id="choice" value="1"> <br/>
     Total number of dosages <input type="radio" name="choice" id="choice" value="2"> <br/>
