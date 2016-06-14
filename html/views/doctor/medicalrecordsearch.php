@@ -13,9 +13,14 @@ if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
 ?>
 
 <form method="post" action="checkmedicalrecords.php">
-    Search by Carecard #: <br>
-    <input class="form-control" type="text" name="carecardnum" id="carecardnum">
-    <input class="btn btn-success" type="submit" name="submit" value="submit">
+    <h4>Search by Carecard #:</h4>
+    <div class="col-md-3">
+        <input class="form-control" type="text" name="carecardnum" id="carecardnum">
+    </div>
+    <div class="col-md-2">
+        <input class="btn btn-success" type="submit" name="submit" value="submit">
+    </div>
+    <br>
 </form>
 
 <?php
