@@ -3,7 +3,10 @@ session_start();
 
 include '../../resources/ChromePhp.php';
 include '../../resources/config.php';
+
 require_once('../../resources/templates/doctorheader.php');
+// require_once($_SERVER["DOCUMENT_ROOT"] ."/resources/templates/doctorheader.php");
+
 
 if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
     header("location:../../login.php");
@@ -22,13 +25,13 @@ $myEID = $_SESSION['mypassword'];
 $patientQuery = "SELECT * FROM Patient_Attendedby WHERE eid = '$myEID'";
 $patientResult = $conn->query($patientQuery);
 
+$patientCount = $patientResult->num_rows;
+
 $data = array();
 
 while($row = $patientResult->fetch_assoc()) {
     $data[] = $row;
 }
-
-$colNames = array_keys(reset($data));
 
 // query for all patients
 $allPatientsQuery = "SELECT * FROM Patient_Attendedby";
@@ -39,16 +42,18 @@ while($allRow = $allResult->fetch_assoc()) {
     $allData[] = $allRow;
 }
 
+$colNames = array_keys(reset($allData));
+
 // query for special attention patients
 $specialAttentionQuery = "
 SELECT *
-FROM Patient_Attendedby PA 
-WHERE NOT EXISTS 
-(SELECT PTN.prescriptionID 
-    FROM Prescription PTN 
-    WHERE PTN.prescriptionID NOT IN 
-    (SELECT P.prescriptionID 
-    FROM Prescribes P 
+FROM Patient_Attendedby PA
+WHERE NOT EXISTS
+(SELECT PTN.prescriptionID
+    FROM Prescription PTN
+    WHERE PTN.prescriptionID NOT IN
+    (SELECT P.prescriptionID
+    FROM Prescribes P
     WHERE P.carecardnum = PA.carecardnum))";
 
 $specialAttentionResult  = $conn->query($specialAttentionQuery);
@@ -65,9 +70,13 @@ while($specialAttentionRow = $specialAttentionResult->fetch_assoc()) {
     <tr>
         <?php
            // print the header
-           foreach($colNames as $colName) {
-              echo "<th> $colName </th>";
-           }
+            if ($patientCount < 1) {
+                echo "No Patients";
+            } else {
+               foreach($colNames as $colName) {
+                  echo "<th> $colName </th>";
+               }
+            }
         ?>
     </tr>
     <?php
