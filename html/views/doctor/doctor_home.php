@@ -42,6 +42,7 @@ while($allRow = $allResult->fetch_assoc()) {
 $colNames = array_keys(reset($allData));
 
 // query for special attention patients
+// DIVISION QUERY
 $specialAttentionQuery = "
 SELECT *
 FROM Patient_Attendedby PA
