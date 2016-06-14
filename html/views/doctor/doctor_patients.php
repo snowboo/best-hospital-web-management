@@ -12,11 +12,14 @@ if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
 
 $myEID = $_SESSION['mypassword'];
 // $patientQuery = "SELECT * FROM Patient_Attendedby WHERE eid = '$myEID'";
-$patientQuery = "SELECT fname, lname, sex, p.carecardnum, count(*) as '# Prescriptions'
+$patientQuery = "SELECT fname as 'First Name', lname as 'Last Name', sex as Sex, count(*) as '# Prescriptions'
 FROM Patient_Attendedby pa, Prescribes p
-WHERE pa.eid = '$myEID' AND pa.carecardnum = p.carecardnum
-GROUP BY p.carecardnum;
-";
+WHERE pa.eid = '$myEID' AND p.carecardnum = pa.carecardnum
+GROUP BY pa.carecardnum
+UNION
+SELECT fname, lname, pa1.sex, 0
+FROM Patient_Attendedby pa1, Prescribes p1
+WHERE pa1.eid = '$myEID' AND pa1.carecardnum NOT IN (SELECT p2.carecardnum FROM Prescribes p2);";
 $patientResult = $conn->query($patientQuery);
 
 $data = array();
@@ -26,13 +29,6 @@ while($row = $patientResult->fetch_assoc()) {
 }
 
 $colNames = array_keys(reset($data));
-
-$numPrescriptionsQuery =
-"SELECT fname, lname, count(*) as Prescriptions
-FROM Patient_Attendedby pa, Prescribes p
-WHERE pa.eid = '$myEID' AND pa.carecardnum = p.carecardnum
-GROUP BY p.carecardnum;
-"
 
 ?>
 
@@ -51,9 +47,12 @@ GROUP BY p.carecardnum;
         foreach($data as $row) {
             echo "<tr>";
             foreach($colNames as $colName) {
-                echo "<td>".$row[$colName]."</td>";
+                echo "<td>".ucfirst($row[$colName])."</td>";
             }
+            echo "<td>"."<button class='btn btn-success'>Prescribe</button>" ."</td>";
+            echo "<td>"."<button class='btn btn-warning'>New Record</button>" ."</td>";
             echo "</tr>";
+
         }
     ?>
 </table>
