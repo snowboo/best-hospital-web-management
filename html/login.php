@@ -53,7 +53,7 @@ body {
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="mypassword" name="mypassword" class="form-control" placeholder="Password" required>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-    <button class="btn btn-warning btn-lg btn-block" onclick="history.go(-1);">Cancel </button></td>
+    <a href='/homepage.html' class="btn btn-warning btn-lg btn-block">Cancel </a>
   </form>
 
 </div>
