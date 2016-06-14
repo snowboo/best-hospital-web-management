@@ -18,7 +18,7 @@ if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "nurse") {
     <body>
     Nurse Homepage
 
-    <button><a href="room_management.php">Room Management</a></button>
+    <a class="btn btn-success" href="room_management.php">Room Management</a>
     </body>
 </html>
 

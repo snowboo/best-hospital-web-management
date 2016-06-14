@@ -32,7 +32,7 @@ $count = $result->num_rows;
     Nurse Homepage
 
 <h3>Room Data</h3>
-<table border="1">
+<table class="table table-hover">
     <tr>
         <?php
            // print the header
@@ -58,20 +58,20 @@ $count = $result->num_rows;
             <tr> Assign Patient to Room </tr>
             <tr>
               <td> Room Number </td>
-              <td><input name="roomnum" type="number" id="roomnum"></td>
+              <td><input class="form-control" name="roomnum" type="number" id="roomnum"></td>
             </tr>
             <tr>
               <td> Floor Number </td>
-              <td><input name="floornum" type="number" id="floornum"></td>
+              <td><input class="form-control" name="floornum" type="number" id="floornum"></td>
             </tr>
             <tr>
               <td> Paient CareCard Number </td>
-              <td><input name="carecardnum" type="number" id="carecardnum"></td>
+              <td><input class="form-control" name="carecardnum" type="number" id="carecardnum"></td>
             <tr>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td><input type="submit" name="Submit" value="Assign a room">
-                    <button onclick="history.go(-1);">Cancel </button></td>
+                    <td><input class="btn btn-success" type="submit" name="Submit" value="Assign a room">
+                    <button class="btn btn-warning" onclick="history.go(-1);">Cancel </button></td>
             </tr>
           </table>
         </td>
