@@ -65,6 +65,7 @@ else {
 	INSERT INTO $tbl_name (fname, lname, age, address, sex, carecardnum)
 	VALUES ('$fname', '$lname', '$age', '$address', '$sex', '$carecardnum')
 	";
+
 	$conn->query($sql);
 
 	$new_patient_msg = "This patient is new! Assign a doctor";
