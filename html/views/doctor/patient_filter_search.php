@@ -7,6 +7,7 @@ session_start();
 //include '../../resources/config.php';
 include ($_SERVER["DOCUMENT_ROOT"] . "/resources/config.php");
 include ($_SERVER["DOCUMENT_ROOT"] . "/resources/ChromePhp.php");
+require_once($_SERVER["DOCUMENT_ROOT"] ."/resources/templates/doctorheader.php");
 
 $tbl_name="Patient_Attendedby"; // Table name
 $fnamec = $_POST["fnamec"];
@@ -33,6 +34,15 @@ foreach ($selectionArray as $attribute) {
   $select = rtrim($select,',');
 }
 
+if (empty($select) || !isset($select)) {
+  $err_not_found = "Please Select a field to project";
+    echo '<script type="text/javascript">
+            alert("'.$err_not_found.'");
+            window.location="patient_filter.php";
+          </script>';
+
+}
+
 $where="";
 //remove empty values from selection array
 if (isset($carecardnum) && !empty($carecardnum)) {
@@ -54,6 +64,15 @@ if (isset($age) && !empty($age) && isset($operator) && !empty($operator)) {
   $where = "age $operator $age AND " . $where;
 }
 $where = rtrim($where, 'AND ');
+
+if (empty($where) || !isset($where)) {
+  $err_not_found = "Please Select a filter";
+    echo '<script type="text/javascript">
+            alert("'.$err_not_found.'");
+            window.location="patient_filter.php";
+          </script>';
+
+}
 
 $sql = "SELECT $select from $tbl_name WHERE $where";
 $result = $conn->query($sql);
