@@ -27,9 +27,9 @@ function echoActiveClassIfRequestMatches($requestUri)
     <ul class="nav nav-pills">
         <li <?=echoActiveClassIfRequestMatches("doctor_home")?> role="presentation"><a href="/views/doctor/doctor_home.php">Home</a></li>
         <li <?=echoActiveClassIfRequestMatches("doctor_patients")?> role="presentation"><a href="/views/doctor/doctor_patients.php">My Patients</a></li>
-        <li <?=echoActiveClassIfRequestMatches("prescriptions")?> role="presentation"><a href="/views/doctor/prescriptions.php">Prescribe</a></li>
-        <li <?=echoActiveClassIfRequestMatches("medicalrecordsearch")?> role="presentation"><a href="/views/doctor/medicalrecordsearch.php">Medical Records</a></li>
-        <li <?=echoActiveClassIfRequestMatches("patient_filter")?> role="presentation"><a href="/views/doctor/patient_filter.php">Search for specific patients</a></li>
+<!--         <li <?=echoActiveClassIfRequestMatches("prescriptions")?> role="presentation"><a href="/views/doctor/prescriptions.php">Prescribe</a></li> -->
+        <li <?=echoActiveClassIfRequestMatches("medicalrecordsearch")?> role="presentation"><a href="/views/doctor/medicalrecordsearch.php">Medical Record Search</a></li>
+        <li <?=echoActiveClassIfRequestMatches("patient_filter")?> role="presentation"><a href="/views/doctor/patient_filter.php">Patient Lookup</a></li>
         <li <?=echoActiveClassIfRequestMatches("prescription_stats")?> role="presentation"><a href="/views/doctor/prescription_stats.php">Stats</a></li>
     </ul>
 </div>
