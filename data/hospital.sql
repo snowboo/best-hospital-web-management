@@ -88,7 +88,11 @@ create table Room_Assignedto(floornum INTEGER,
     roomnum INTEGER,
     carecardnum INTEGER,
     PRIMARY KEY (floornum, roomnum),
-    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum));
+    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum)
+    ON DELETE CASCADE,
+    CHECK (carecardnum <10000 AND carecardnum > 999),
+    CHECK (roomnum >= 1 AND roomnum <= 30),
+    CHECK (floornum>= 1 AND floornum <= 20));
 
 insert into Room_Assignedto values (1, 1, null);
 insert into Room_Assignedto values (1, 2, null);
@@ -133,7 +137,8 @@ create table Prescribes(eid INTEGER,
     PRIMARY KEY (eid, prescriptionID, carecardnum),
     FOREIGN KEY fk_employee(eid) REFERENCES Employee(eid),
     FOREIGN KEY fk_prescription(prescriptionID) REFERENCES Prescription(prescriptionID),
-    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum),
+    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum)
+    ON DELETE CASCADE,
     CHECK (carecardnum < 10000 AND carecardnum > 999));
 
 insert into Prescribes values (1, 0, 1234, '2015-04-13 11:11:11');
@@ -157,7 +162,8 @@ create table ChecksIn(eid INTEGER,
     carecardnum INTEGER,
     PRIMARY KEY (eid, carecardnum),
     FOREIGN KEY fk_employee(eid) REFERENCES Employee(eid),
-    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum),
+    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum)
+    ON DELETE CASCADE,
     CHECK (carecardnum < 10000 AND carecardnum>999)); 
 
 insert into ChecksIn values (11, 1234);
@@ -169,7 +175,8 @@ insert into ChecksIn values (14, 5620);
 create table ManagedBy(loggedDate TIMESTAMP, mid INTEGER, carecardnum INTEGER, eid INTEGER,
     PRIMARY KEY (mid, carecardnum, eid),
     FOREIGN KEY fk_medicalrecord(mid) REFERENCES MedicalRecord_Has(mid),
-    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum),
+    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum)
+    ON DELETE CASCADE,
     FOREIGN KEY fk_employee(eid) REFERENCES Employee(eid),
     CHECK (carecardnum<10000 AND carecardnum > 999));
 
