@@ -53,7 +53,7 @@ while($allRow = $allResult->fetch_assoc()) {
         foreach($data as $row) {
             echo "<tr>";
             foreach($colNames as $colName) {
-                echo "<td>".$row[$colName]."</td>";
+                echo "<td>".ucfirst($row[$colName])."</td>";
             }
             echo "</tr>";
         }
@@ -80,7 +80,7 @@ while($allRow = $allResult->fetch_assoc()) {
         foreach($allData as $allRow) {
             echo "<tr>";
             foreach($colNames as $colName) {
-                echo "<td>".$allRow[$colName]."</td>";
+                echo "<td>".ucfirst($allRow[$colName])."</td>";
             }
             echo "</tr>";
         }

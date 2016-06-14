@@ -11,12 +11,24 @@ session_start();
 if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "nurse") {
   header("location:../../login.php");
 }
+
+$roomQuery = "SELECT count(*) FROM Room_Assignedto WHERE carecardnum is NULL;";
+$result = $conn->query($roomQuery);
+$roomRow = $result->fetch_assoc();
+
+$allRooms = "SELECT count(*) FROM Room_Assignedto;";
+
+$allRoomResult = $conn->query($allRooms);
+$allRoomRow = $allRoomResult->fetch_assoc();
 ?>
 
 
 <html>
     <body>
     Nurse Homepage
+    <h3>Available Rooms:</h3>
+    <h2><?php echo $roomRow['count(*)']
+    . " / " . $allRoomRow['count(*)']; ?></h2>
 
     <a class="btn btn-success" href="room_management.php">Room Management</a>
     <a class="btn btn-success" href="patient_byFloor_search.php">Room Management</a>
