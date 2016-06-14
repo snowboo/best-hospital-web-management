@@ -40,6 +40,8 @@ $colNames = array_keys(reset($data));
            foreach($colNames as $colName) {
               echo "<th> $colName </th>";
            }
+           echo "<th>" . "Prescribe" . "</th>";
+           echo "<th>" . "Medical Record" . "</th>";
         ?>
     </tr>
     <?php
@@ -49,11 +51,11 @@ $colNames = array_keys(reset($data));
             foreach($colNames as $colName) {
                 echo "<td>".ucfirst($row[$colName])."</td>";
             }
-            echo "<td>"."<button class='btn btn-success'>Prescribe</button>" ."</td>";
-            echo "<td>"."<button class='btn btn-warning'>New Record</button>" ."</td>";
+            echo "<td>"."<a href='/views/doctor/prescriptions.php' class='btn btn-success'>Prescribe</a>" ."</td>";
+            echo "<td>"."<a class='btn btn-warning'>New Record</a>" ."</td>";
             echo "</tr>";
-
         }
+        echo $data[0]['fname'];
     ?>
 </table>
 

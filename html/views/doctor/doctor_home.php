@@ -3,6 +3,7 @@ session_start();
 
 include '../../resources/ChromePhp.php';
 include '../../resources/config.php';
+require_once($_SERVER["DOCUMENT_ROOT"] ."/resources/templates/doctorheader.php");
 
 if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
     header("location:../../login.php");
@@ -41,13 +42,13 @@ while($allRow = $allResult->fetch_assoc()) {
 // query for special attention patients
 $specialAttentionQuery = "
 SELECT *
-FROM Patient_Attendedby PA 
-WHERE NOT EXISTS 
-(SELECT PTN.prescriptionID 
-    FROM Prescription PTN 
-    WHERE PTN.prescriptionID NOT IN 
-    (SELECT P.prescriptionID 
-    FROM Prescribes P 
+FROM Patient_Attendedby PA
+WHERE NOT EXISTS
+(SELECT PTN.prescriptionID
+    FROM Prescription PTN
+    WHERE PTN.prescriptionID NOT IN
+    (SELECT P.prescriptionID
+    FROM Prescribes P
     WHERE P.carecardnum = PA.carecardnum))";
 
 $specialAttentionResult  = $conn->query($specialAttentionQuery);
