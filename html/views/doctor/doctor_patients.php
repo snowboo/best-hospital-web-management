@@ -32,6 +32,22 @@ if ($patientCount > 0) {
     $colNames = array_keys(reset($data));
 }
 
+//fname, lname, age, address, sex, carecardnum
+$fname   = $_POST['fname'];
+$lname   = $_POST['lname'];
+$age     = $_POST['age'];
+$address = $_POST['address'];
+$sex   = $_POST['sex'];
+$carecardnum   = $_POST['carecardnum'];
+
+//Store as global variables
+$_SESSION['fname']= $fname;
+$_SESSION['lname']= $lname;
+$_SESSION['age']= $age;
+$_SESSION['address']= $address;
+$_SESSION['sex']= $sex;
+$_SESSION['carecardnum']= $carecardnum;
+
 ?>
 
 <h3>My Patients</h3>
@@ -63,7 +79,7 @@ if ($patientCount > 0) {
             // TODO: remove these sessions if not used (currently passing values through URL)
             $_SESSION[$index . "_" . 'carecardnum'] = $row['CardNo'];
             echo "<td>"."<a href='/views/doctor/prescribe.php?cardnum=". $row['CardNo'] . "'" . " class='btn btn-success'>Prescribe</a>" ."</td>";
-            echo "<td>"."<a href='/views/doctor/createmedicalrecord.php?cardnum=". $row['CardNo'] . "'" . " class='btn btn-warning'>New Record</a>" ."</td>";
+            echo "<td>"."<a href='/views/doctor/create_medical_records.php?cardnum=". $row['CardNo'] . "'" . " class='btn btn-warning'>New Record</a>" ."</td>";
             echo "</tr>";
             $index++;
         }
