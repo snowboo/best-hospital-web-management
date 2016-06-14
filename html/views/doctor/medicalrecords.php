@@ -14,7 +14,10 @@ require_once($_SERVER["DOCUMENT_ROOT"] ."/resources/templates/doctorheader.php")
 
 
 $carecardnum = $_SESSION['carecardnum'];
-$sql = "SELECT * from MedicalRecord_Has WHERE carecardnum = '$carecardnum'";
+$sql = "SELECT m.mid as RecordID, p.fname as 'First Name', p.lname as 'Last Name',
+medicalStatus as Status, m.carecardnum as 'Carecard Number'
+from MedicalRecord_Has m, Patient_Attendedby p
+WHERE m.carecardnum = '$carecardnum' AND m.carecardnum = p.carecardnum;";
 $result = $conn->query($sql);
 
 $data = array();
@@ -26,7 +29,7 @@ $colNames = array_keys(reset($data));
 ?>
 
 <h3>Medical Records</h3>
-<table border="1">
+<table class="table table-hover">
     <tr>
         <?php
            // print the header

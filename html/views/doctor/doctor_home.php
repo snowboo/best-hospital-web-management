@@ -35,7 +35,7 @@ while($allRow = $allResult->fetch_assoc()) {
 ?>
 
 <h3>My Patients</h3>
-<table border="1">
+<table class="table table-hover">
     <tr>
         <?php
            // print the header
@@ -57,7 +57,7 @@ while($allRow = $allResult->fetch_assoc()) {
 </table>
 
 <h3>All Patients</h3>
-<table border="1">
+<table class="table table-hover">
     <tr>
         <?php
            // print the header

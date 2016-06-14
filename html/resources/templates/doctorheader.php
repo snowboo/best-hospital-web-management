@@ -10,10 +10,10 @@
 <body>
 <div id="header">
     <h1>Dashboard</h1>
-    <ul class="nav global">
-        <li><a href="/views/doctor/doctor_home.php">Home</a></li>
-        <li><a href="/views/doctor/doctor_patients.php">My Patients</a></li>
-        <li><a href="/views/doctor/medicalrecordsearch.php">Medical Records</a></li>
-        <li><a href="/views/doctor/patient_filter.php">Search for specific patients</a></li>
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="/views/doctor/doctor_home.php">Home</a></li>
+        <li role="presentation"><a href="/views/doctor/doctor_patients.php">My Patients</a></li>
+        <li role="presentation"><a href="/views/doctor/medicalrecordsearch.php">Medical Records</a></li>
+        <li role="presentation"><a href="/views/doctor/patient_filter.php">Search for specific patients</a></li>
     </ul>
 </div>
