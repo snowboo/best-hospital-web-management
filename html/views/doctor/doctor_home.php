@@ -3,6 +3,7 @@ session_start();
 
 include '../../resources/ChromePhp.php';
 include '../../resources/config.php';
+require_once('../../resources/templates/doctorheader.php');
 
 if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
     header("location:../../login.php");
@@ -82,8 +83,8 @@ while($specialAttentionRow = $specialAttentionResult->fetch_assoc()) {
 </table>
 
 <a class="btn btn-success" href="delete_patient.php">Remove Patient</a>
-<a class="btn btn-success" href="delete_prescrption.php">Delete Prescrption</a>
-<a class="btn btn-success" href="delete_medicalRecord.php">Delete Medical Record</a>
+<a class="btn btn-success" href="delete_prescription.php">Delete Prescrption</a>
+<a class="btn btn-success" href="delete_MR.php">Delete Medical Record</a>
 
 
 <h3>All Patients</h3>

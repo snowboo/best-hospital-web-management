@@ -12,7 +12,9 @@ if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
 }
 
 $myEID = $_SESSION['mypassword'];
-$patientQuery = "SELECT * FROM Patient_Attendedby WHERE eid = '$myEID'";
+$patientQuery = "SELECT fname as 'First Name', lname as 'Last Name', age as 'Age',
+                        sex as 'Sex', carecardnum as 'Care Card Number', eid as 'Doctor ID'
+                    FROM Patient_Attendedby WHERE eid = '$myEID'";
 $patientResult = $conn->query($patientQuery);
 
 $data = array();
