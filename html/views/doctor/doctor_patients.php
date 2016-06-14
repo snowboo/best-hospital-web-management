@@ -21,14 +21,16 @@ SELECT fname, lname, pa1.carecardnum, 0
 FROM Patient_Attendedby pa1, Prescribes p1
 WHERE pa1.eid = '$myEID' AND pa1.carecardnum NOT IN (SELECT p2.carecardnum FROM Prescribes p2);";
 $patientResult = $conn->query($patientQuery);
-
+$patientCount = $patientResult->num_rows;
 $data = array();
 
 while($row = $patientResult->fetch_assoc()) {
     $data[] = $row;
 }
 
-$colNames = array_keys(reset($data));
+if ($patientCount > 0) {
+    $colNames = array_keys(reset($data));
+}
 
 ?>
 
@@ -37,11 +39,15 @@ $colNames = array_keys(reset($data));
     <tr>
         <?php
            // print the header
-           foreach($colNames as $colName) {
-              echo "<th> $colName </th>";
-           }
-           echo "<th>" . "Prescribe" . "</th>";
-           echo "<th>" . "Medical Record" . "</th>";
+            if ($patientCount == 0) {
+                echo 'No Patients';
+            } else {
+               foreach($colNames as $colName) {
+                  echo "<th> $colName </th>";
+               }
+               echo "<th>" . "Prescribe" . "</th>";
+               echo "<th>" . "Medical Record" . "</th>";
+            }
         ?>
     </tr>
     <?php
