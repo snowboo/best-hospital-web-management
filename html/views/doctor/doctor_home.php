@@ -16,6 +16,8 @@ if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
 // ChromePhp::warn('something went wrong!');
 
 $myEID = $_SESSION['mypassword'];
+
+//query for my patients
 $patientQuery = "SELECT * FROM Patient_Attendedby WHERE eid = '$myEID'";
 $patientResult = $conn->query($patientQuery);
 
@@ -34,6 +36,25 @@ $allResult = $conn->query($allPatientsQuery);
 $allData = array();
 while($allRow = $allResult->fetch_assoc()) {
     $allData[] = $allRow;
+}
+
+// query for special attention patients
+$specialAttentionQuery = "
+SELECT *
+FROM Patient_Attendedby PA 
+WHERE NOT EXISTS 
+(SELECT PTN.prescriptionID 
+    FROM Prescription PTN 
+    WHERE PTN.prescriptionID NOT IN 
+    (SELECT P.prescriptionID 
+    FROM Prescribes P 
+    WHERE P.carecardnum = PA.carecardnum))";
+
+$specialAttentionResult  = $conn->query($specialAttentionQuery);
+
+$specialAttentionData = array();
+while($specialAttentionRow = $specialAttentionResult->fetch_assoc()) {
+    $specialAttentionData[] = $specialAttentionRow;
 }
 
 ?>
@@ -81,6 +102,28 @@ while($allRow = $allResult->fetch_assoc()) {
             echo "<tr>";
             foreach($colNames as $colName) {
                 echo "<td>".ucfirst($allRow[$colName])."</td>";
+            }
+            echo "</tr>";
+        }
+    ?>
+</table>
+
+<h3>Patients that Require Special Attention</h3>
+<table class="table table-hover">
+    <tr>
+        <?php
+           // print the header
+           foreach($colNames as $colName) {
+              echo "<th> $colName </th>";
+           }
+        ?>
+    </tr>
+    <?php
+        // print the rows
+        foreach($specialAttentionData as $specialAttentionRow) {
+            echo "<tr>";
+            foreach($colNames as $colName) {
+                echo "<td>".ucfirst($specialAttentionRow[$colName])."</td>";
             }
             echo "</tr>";
         }
