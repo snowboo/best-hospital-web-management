@@ -92,7 +92,7 @@ $colNames2 = array_keys(reset($allData));
     <h3>Search Prescription:</h3> <br>
     Number of Prescriptions <input type="radio" name="choice" id="choice" value="1"> <br/>
     Total number of dosages <input type="radio" name="choice" id="choice" value="2"> <br/>
-    <input type="submit" name="submit" value="submit">
+    <input class="btn btn-primary" type="submit" name="submit" value="submit">
 </form>
 
 
