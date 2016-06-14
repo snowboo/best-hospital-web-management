@@ -17,24 +17,24 @@ $choice = $_POST["choice"];
 
 $aggregate;
 if ($age == "young") {
-  $aggregate = "min(p1.age)";
+  $aggregate = "min(p4.age)";
 } else {
-  $aggregate = "max(p1.age)";
+  $aggregate = "max(p4.age)";
 }
 
-if ($choice = "1") {
-  $choice = "sum(p2.dosages)";
+if ($choice == "1") {
+  $choice = "count(p2.type) as 'Number of different meds'";
 } else {
-  $choice = "count(p2.type)";
+  $choice = "sum(p2.dosage) as 'Total Dosages'";
 }
 //ChromePhp::log($selectionArray);
 
-$sql = "SELECT p1.carecardnum, $choice, from $tbl_name1 p1, $tbl_name2 p2, $tbl_name3 p3
+$sql = "SELECT p1.carecardnum, $choice from $tbl_name1 p1, $tbl_name2 p2, $tbl_name3 p3
   WHERE p1.carecardnum = p3.carecardnum AND 
-  p2.prescriptionID = p3.prescriptionID
-  GROUP BY p1.carecardnum 
-  HAVING $aggregate";
-echo $sql;
+  p2.prescriptionID = p3.prescriptionID AND
+  p1.age in (SELECT $aggregate 
+             FROM Patient_Attendedby p4)
+  GROUP BY p1.carecardnum";
 $result = $conn->query($sql);
 $data = array();
 
