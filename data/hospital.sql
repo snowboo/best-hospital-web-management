@@ -80,6 +80,7 @@ create table Patient_Attendedby(fname TEXT,
 
 insert into Patient_Attendedby values ("drizzy", "drake", '18', '123 fake st', 'male', '1234', '1');
 insert into Patient_Attendedby values ("jessica", "alba", '25', '13 some st', 'female', '2345', '1');
+insert into Patient_Attendedby values ("Kpop", "Star", '25', '13 some st', 'female', '9483', '1');
 insert into Patient_Attendedby values ("sansa", "stark", '12', '23 another st', 'female', '8204', '2');
 insert into Patient_Attendedby values ("jon", "snow", '13', '1 wall st', 'male', '2920', '3');
 insert into Patient_Attendedby values ("kate", "beckinsale", '69', '45 dewd st', 'female', '5620', '5');
