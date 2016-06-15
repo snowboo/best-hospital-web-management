@@ -16,11 +16,28 @@ $roomnum = $_POST['roomnum'];
 $floornum = $_POST['floornum'];
 $carecardnum = $_POST['carecardnum'];
 
-//Prevent injection
-//$roomnum = stripslashes($roomnum);
-//$floornum = stripslashes($floornum);
-//$carecardnum = stripslashes($carecardnum);
-$sql="select * from Room_Assignedto, Patient_Attendedby p2 where roomnum = $roomnum AND floornum = $floornum AND p2.carecardnum = $carecardnum";
+if ((!isset($roomnum) || empty($roomnum)) ||
+  (!isset($floornum) || empty($floornum)) ||
+  (!isset($carecardnum) || empty($carecardnum))) {
+     echo '<script type="text/javascript">
+         alert("Please enter all three fields");
+         window.location= "room_management.php"; 
+        </script>';
+}
+
+// Don't think it'll hit this case so I stopped error handling l0l
+if ($roomnum > 3 || $roomnum < 1 || !is_int($roomnum)) {
+     echo '<script type="text/javascript">
+         alert("Please enter int for roomnum");
+         window.location= "room_management.php"; 
+        </script>';
+
+}
+
+$sql="select * from Room_Assignedto r, Patient_Attendedby p2 where
+ r.roomnum = $roomnum AND
+ floornum = $floornum AND
+ p2.carecardnum = $carecardnum";
 $result = $conn->query($sql);
 
 $count = $result->num_rows;
@@ -30,38 +47,47 @@ if ($count == 0) {
             alert("Patient Not Found");
                 window.location= "room_management.php"; 
         </script>';
-} else if ($result->fetch_assoc()['p2.carecardnum'] != $carecardnum) {
-// update
-  $sql="
-UPDATE $tbl_name SET 
-roomnum=$roomnum, 
-floornum=$floornum,
-carecardnum=$carecardnum
-WHERE roomnum=$roomnum
-AND floornum=$floornum";
+} 
 
-$conn->query($sql);
-         echo '<script type="text/javascript">
-            alert("Successfully updated");
-                window.location= "room_management.php"; 
-        </script>';
+//See if patient is already in a room
+$sql="select * from Room_Assignedto r WHERE
+  r.carecardnum=$carecardnum";
 
-} else
-{
-  //insert
-  $sql="
-    INSERT INTO $tbl_name(floornum,roomnum,carecardnum)
-    VALUES ($floornum,$roomnum,$carecardnum)";
+$result = $conn->query($sql);
+$count = $result->num_rows;
 
-    $conn->query($sql);
-         echo '<script type="text/javascript">
-            alert("Successfully inserted");
-                window.location= "room_management.php"; 
-        </script>';
+if ($count == 1) {
+  //Set the current room where the patient is at to null
 
+  $rowData = $result->fetch_assoc();
+  $oldRoom = $rowData['roomnum'];
+  $oldFloor = $rowData['floornum'];
+
+  $sql="UPDATE $tbl_name SET
+    carecardnum=NULL WHERE
+    floornum=$oldFloor AND
+    roomnum=$oldRoom";
+  $conn->query($sql);
 
 }
 
+$sql="UPDATE $tbl_name SET
+    carecardnum=$carecardnum WHERE
+    floornum=$floornum AND
+    roomnum=$roomnum";
+  $conn->query($sql);
+
+  if ($conn->query($sql)===TRUE) {
+    echo '<script type="text/javascript">
+         alert("Successfully updated");
+         window.location= "room_management.php"; 
+        </script>';
+  } else {
+    echo '<script type="text/javascript">
+         alert("Update Failed");
+         window.location= "room_management.php"; 
+        </script>';
+  }
 ?>
 
 

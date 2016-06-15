@@ -58,20 +58,20 @@ $count = $result->num_rows;
             <tr> Assign Patient to Room </tr>
             <tr>
               <td> Room Number </td>
-              <td><input class="form-control" name="roomnum" type="number" id="roomnum"></td>
+              <td><input class="form-control" name="roomnum" type="number" id="roomnum" min="1" max="3"></td>
             </tr>
             <tr>
               <td> Floor Number </td>
-              <td><input class="form-control" name="floornum" type="number" id="floornum"></td>
+              <td><input class="form-control" name="floornum" type="number" id="floornum" min="1" max="3"></td>
             </tr>
             <tr>
               <td> Paient CareCard Number </td>
-              <td><input class="form-control" name="carecardnum" type="number" id="carecardnum"></td>
+              <td><input class="form-control" name="carecardnum" type="number" id="carecardnum" min="1000" max="9999"></td>
             <tr>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td><input class="btn btn-success" type="submit" name="Submit" value="Assign a room">
-                    <button class="btn btn-warning" onclick="history.go(-1);">Cancel </button></td>
+                    <td><input class="btn btn-success" type="submit" name="Submit" value="Assign a room"></td>
+                    <td><a class="btn btn-warning" href="nurse_home.php">Cancel </a></td>
             </tr>
           </table>
         </td>
