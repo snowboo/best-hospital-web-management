@@ -75,7 +75,6 @@ if (empty($where) || !isset($where)) {
 }
 
 $sql = "SELECT $select from $tbl_name WHERE $where";
-echo "$sql";
 $result = $conn->query($sql);
 $data = array();
 
