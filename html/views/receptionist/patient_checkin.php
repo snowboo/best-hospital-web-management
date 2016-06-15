@@ -41,7 +41,7 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td><input class="btn btn-success" type="submit" name="submit" value="Submit">
-                    <button class="btn btn-warning" onclick="history.go(-1);">Cancel </button></td>
+                    <a class="btn btn-warning" href="receptionist_home.php">Cancel </a></td>
                 </tr>
 
                 </table>

@@ -8,6 +8,22 @@ session_start();
 $tbl_name="Patient_Attendedby"; // Table name
 
 //fname, lname, age, address, sex, carecardnum
+$required = array('fname', 'lname', 'age', 'address', 'sex', 'carecardnum');
+$error = false;
+foreach($required as $field) {
+    if (empty($_POST[$field])) {
+        $error = true;
+    }
+}
+
+if ($error) {
+    $all_fields_required = "All fields are required";
+            echo '<script type="text/javascript">
+                alert("'.$all_fields_required.'");
+                window.location= "patient_checkin.php";
+            </script>';
+}
+
 $fname	 = $_POST['fname'];
 $lname 	 = $_POST['lname'];
 $age	 = $_POST['age'];
@@ -53,7 +69,7 @@ $count = $result->num_rows;
 //TODO: Check that the patient exists in the db
 // count == 1 if the input patient already exist in database
 if($count == 1) {
-	$error_msg = "This patient already exists in the database";
+    $error_msg = "This patient already exists in the database";
             echo '<script type="text/javascript">
             alert("'.$error_msg.'");
                 window.location= "patient_checkin.php";
@@ -61,26 +77,11 @@ if($count == 1) {
 }
 // if the input patient doesn't exist in database, add the patient into the database
 else {
-	$sql = "
-	INSERT INTO $tbl_name (fname, lname, age, address, sex, carecardnum)
-	VALUES ('$fname', '$lname', '$age', '$address', '$sex', '$carecardnum')
-	";
-
-	$conn->query($sql);
-
-	$new_patient_msg = "This patient is new! Assign a doctor";
+    $new_patient_msg = "This patient is new! Assign a doctor";
             echo '<script type="text/javascript">
             alert("'.$new_patient_msg.'");
             window.location= "assign_doctor.php";
         </script>';
-
-
-
-	// if ($conn->query($sql) === TRUE) {
- //    echo "New patient added successfully";
-	// } else {
- //    echo "Error: " . $sql . "<br>" . $conn->error;
-	// }
 
 }
 ?>
