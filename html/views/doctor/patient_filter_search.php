@@ -87,7 +87,7 @@ $colNames = array_keys(reset($data));
 $count = $result->num_rows;
 
 if ($count >= 1) {
-  
+
 } else {
     $err_not_found = "No patient found with selected attributes";
     echo '<script type="text/javascript">
@@ -95,11 +95,11 @@ if ($count >= 1) {
             window.location="patient_filter.php";
           </script>';
 }
- 
+
 ?>
 
 <h3>Found Patients</h3>
-<table border="1">
+<table class="table table-hover">
     <tr>
         <?php
            // print the header

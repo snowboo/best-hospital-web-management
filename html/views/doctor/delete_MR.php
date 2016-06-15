@@ -7,7 +7,7 @@ include '../../resources/config.php';
 require_once('../../resources/templates/doctorheader.php');
 //require_once($_SERVER["DOCUMENT_ROOT"] ."/resources/templates/doctorheader.php");
 
-// check if user is a doctor 
+// check if user is a doctor
 if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
     header("location:../../html/login.php");
 }
@@ -15,7 +15,7 @@ if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
 $myEID = $_SESSION['mypassword'];
 
 // query for all my patients
-$sql = "SELECT m.mid as 'Record ID', pat.fname as 'First Name', pat.lname 'Last Name', pat.carecardnum 'CareCard Number', m.medicalStatus as 'Status' 
+$sql = "SELECT m.mid as 'Record ID', pat.fname as 'First Name', pat.lname 'Last Name', pat.carecardnum 'CareCard Number', m.medicalStatus as 'Status'
         FROM Patient_Attendedby pat, MedicalRecord_Has m
         WHERE pat.carecardnum = m.carecardnum AND $myEID = pat.eid;";
 
@@ -32,7 +32,7 @@ $colNames = array_keys(reset($data));
 
 ?>
 <h3>My Current Patients's Medical Records</h3>
-<table border="1">
+<table class="table table-hover">
     <tr>
         <?php
            // print the header
