@@ -57,9 +57,9 @@ $colNames = array_keys(reset($data));
 
 </br>
 <h3>Delete Prescription</h3>
-<form method="post" action="delete_prescription_ID.php">
+<form method="post" action="delete_prescription_id.php">
     Perscription ID:
-    <input type="text" name="PID" id="PID">
+    <input type="text" name="pid" id="pid">
     Care Card Number:
     <input type="text" name="carecardnum" id="carecardnum">
     <input type="submit" name="submit" value="submit">

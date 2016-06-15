@@ -59,9 +59,9 @@ $colNames = array_keys(reset($data));
 
 </br>
 <h3>Delete Medical Records</h3>
-<form method="post" action="delete_MID.php">
+<form method="post" action="delete_mid.php">
     Medical Record ID:
-    <input type="text" name="MID" id="MID">
+    <input type="text" name="mid" id="mid">
     Care Card Number:
     <input type="text" name="carecardnum" id="carecardnum">
     <input type="submit" name="submit" value="submit">

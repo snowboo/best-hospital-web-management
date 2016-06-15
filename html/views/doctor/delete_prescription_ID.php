@@ -10,29 +10,29 @@ include '../../resources/config.php';
 $myEID = $_SESSION['mypassword'];
 
 $tbl_name="Prescription"; // Table name
-$PID = $_POST['PID'];
+$pid = $_POST['pid'];
 
 // delete a record 
-$sql = "DELETE FROM $tbl_name WHERE prescriptionID='$PID' ;";
+$sql = "DELETE FROM $tbl_name WHERE prescriptionID='$pid';";
 $result = $conn->query($sql);
 
 
-if($PID >= 0) {
-	$PID=(int) $PID;
+if($pid >= 0) {
+	$pid=(int) $pid;
 }
 
-if (is_int($PID) == FALSE || $conn->query($sql) === FALSE){
-	   $err_not_found = "This Is Not A Valid Prescription ID";
-    	echo '<script type="text/javascript">
+if (is_int($pid) == FALSE || $conn->query($sql) === FALSE){
+	   $err_not_found = "There is no prescription under this ID for this Patient";
+    echo '<script type="text/javascript">
             alert("'.$err_not_found.'");
-            window.location="delete_prescription.php";
+            window.location ="delete_patient.php";
           </script>';
 
 } else if ($conn->query($sql) === TRUE) {
 	echo '<script type="text/javascript">
-            alert(Prescription '.$PID.') deleted successfully");
-            window.location="delete_prescription.php";
-          </script>';
+            alert("Record (ID:'.$pid.') deleted successfully");
+             window.location= "delete_patient.php"; 
+        </script>';
 }
 
 ?>
