@@ -13,7 +13,7 @@ $sql = "SELECT COUNT(t1.carecardnum) from $tbl_name1 t1, $tbl_name2 t2 WHERE t2.
 $result = $conn->query($sql);
 $count = $result->num_rows;
 
-if($floornum > 0 && $floornum < 21) {
+if($floornum > 0 && $floornum < 4) {
 	$floornum = (int) $floornum;
 }
 

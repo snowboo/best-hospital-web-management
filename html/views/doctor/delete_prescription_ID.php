@@ -17,7 +17,6 @@ $carecardnum= $_POST['carecardnum'];
 
 
 $check = "SELECT * FROM $tbl_name WHERE prescriptionID='$pid' AND carecardnum=$carecardnum;";
-
 $result = $conn->query($check);
 $count = $result->num_rows;
 
