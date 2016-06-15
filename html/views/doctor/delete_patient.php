@@ -6,7 +6,7 @@ include '../../resources/ChromePhp.php';
 include '../../resources/config.php';
 require_once('../../resources/templates/doctorheader.php');
 
-// check if user is a doctor 
+// check if user is a doctor
 if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
     header("location:../../html/login.php");
 }
@@ -14,7 +14,7 @@ if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
 $myEID = $_SESSION['mypassword'];
 $patientQuery = "SELECT fname as 'First Name', lname as 'Last Name', age as 'Age',
                         sex as 'Sex', carecardnum as 'Care Card Number', eid as 'Doctor ID'
-                    FROM Patient_Attendedby 
+                    FROM Patient_Attendedby
                     WHERE eid='$myEID';";
 
 $patientResult = $conn->query($patientQuery);
@@ -42,7 +42,7 @@ while($allRow = $allResult->fetch_assoc()) {
 
 ?>
 <h3>My Current Patients</h3>
-<table border="1">
+<table class="table table-hover">
     <tr>
         <?php
            // print the header
