@@ -61,26 +61,11 @@ if($count == 1) {
 }
 // if the input patient doesn't exist in database, add the patient into the database
 else {
-	$sql = "
-	INSERT INTO $tbl_name (fname, lname, age, address, sex, carecardnum)
-	VALUES ('$fname', '$lname', '$age', '$address', '$sex', '$carecardnum')
-	";
-
-	$conn->query($sql);
-
 	$new_patient_msg = "This patient is new! Assign a doctor";
             echo '<script type="text/javascript">
             alert("'.$new_patient_msg.'");
             window.location= "assign_doctor.php";
         </script>';
-
-
-
-	// if ($conn->query($sql) === TRUE) {
- //    echo "New patient added successfully";
-	// } else {
- //    echo "Error: " . $sql . "<br>" . $conn->error;
-	// }
 
 }
 ?>
