@@ -19,7 +19,7 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td><input type="submit" name="submit" value="submit">
-                    <button onclick="history.go(-1);">Cancel </button></td>
+                    <a class="btn btn-warning" href="patient_checkin.php">Cancel </a></td>
                 </tr>
 
                 </table>
