@@ -13,26 +13,40 @@ $mid = $_POST['mid'];
 $carecardnum= $_POST['carecardnum'];
 
 // delete a record 
-$sql = "DELETE FROM $tbl_name WHERE mid='$mid' AND carecardnum=$carecardnum;";
+
+$check = "SELECT mid FROM tbl_name WHERE carecardnum=$carecardnum AND mid='$mid';";
+$result = $conn->query($check);
+$count = $result->num_rows;
+
+if ($count > 0){
+  $sql = "DELETE FROM tbl_name WHERE mid='$mid';";
+
+} else {
+  $err_not_found = "There is no valid medical record under this ID for this patient";
+    echo '<script type="text/javascript">
+            alert("'.$err_not_found.'");
+            window.location ="delete_mr.php";
+          </script>';
+}
+
 
 $result = $conn->query($sql);
 
-
-if($mid >= 0) {
-  $mid=(int) $mid;
+if($carecardnum > 999 && $carecardnum < 10000) {
+  $carecardnum=(int) $carecardnum;
 }
 
-if (is_int($MID) == FALSE || $conn->query($sql) === FALSE){
-    $err_not_found = "There is no valid medical record under this ID for this patient";
+if (is_int($carecardnum) == FALSE) {
+    $err_not_found = "There is no patient with this carecardnum";
     echo '<script type="text/javascript">
             alert("'.$err_not_found.'");
-            window.location ="delete_patient.php";
+            window.location ="delete_mr.php";
           </script>';
 
 } else if ($conn->query($sql) === TRUE) {
 	echo '<script type="text/javascript">
             alert("Record (ID: '.$mid.') deleted successfully");
-             window.location= "delete_patient.php"; 
+             window.location= "delete_mr.php"; 
         </script>';
 }
 ?>

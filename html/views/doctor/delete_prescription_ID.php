@@ -9,29 +9,46 @@ include '../../resources/config.php';
 
 $myEID = $_SESSION['mypassword'];
 
-$tbl_name="Prescription"; // Table name
+$tbl_name="Prescribes"; // Table name
 $pid = $_POST['pid'];
+$carecardnum= $_POST['carecardnum'];
 
 // delete a record 
-$sql = "DELETE FROM $tbl_name WHERE prescriptionID='$pid';";
-$result = $conn->query($sql);
 
 
-if($pid >= 0) {
-	$pid=(int) $pid;
-}
+$check = "SELECT * FROM $tbl_name WHERE prescriptionID='$pid' AND carecardnum=$carecardnum;";
 
-if (is_int($pid) == FALSE || $conn->query($sql) === FALSE){
-	   $err_not_found = "There is no prescription under this ID for this Patient";
+$result = $conn->query($check);
+$count = $result->num_rows;
+
+if ($count > 0) {
+  $sql = "DELETE FROM $tbl_name WHERE prescriptionID='$pid';";
+
+} else {
+   $err_not_found = "There is no prescription under this ID for this Patient";
     echo '<script type="text/javascript">
             alert("'.$err_not_found.'");
-            window.location ="delete_patient.php";
+            window.location ="delete_prescription.php";
+          </script>';
+}
+
+$result = $conn->query($sql);
+
+if($carecardnum > 999 && $carecardnum < 10000) {
+  $carecardnum=(int) $carecardnum;
+}
+
+if (is_int($carecardnum) == FALSE){
+	   $err_not_found = "There is no patient with this carecardnum";
+    echo '<script type="text/javascript">
+            alert("'.$err_not_found.'");
+            window.location ="delete_prescription.php";
           </script>';
 
 } else if ($conn->query($sql) === TRUE) {
 	echo '<script type="text/javascript">
             alert("Record (ID:'.$pid.') deleted successfully");
-             window.location= "delete_patient.php"; 
+             window.location= "delete_prescription.php"; 
         </script>';
 }
 

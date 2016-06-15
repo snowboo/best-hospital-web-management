@@ -14,7 +14,7 @@ if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
 $myEID = $_SESSION['mypassword'];
 
 // query for all my patients
-$sql = "SELECT ps.prescriptionID as 'P.ID', pat.fname as 'First Name', pat.lname 'Last Name', pat.carecardnum 'CareCard Number', p.drugID 'Drug ID', p.dosage 'Dosage',ps.loggedDate 'Date'
+$sql = "SELECT ps.prescriptionID as 'P.ID', pat.fname as 'First Name', pat.lname 'Last Name', pat.carecardnum 'CareCard Number', p.type 'Drug Type', p.drugID 'Drug ID', p.dosage 'Dosage',ps.loggedDate 'Date'
          FROM Patient_Attendedby pat, Prescribes ps, Prescription p 
         WHERE pat.carecardnum = ps.carecardnum AND $myEID = ps.eid AND ps.prescriptionID = p.prescriptionID;";
 
