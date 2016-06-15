@@ -16,7 +16,7 @@ $lnamec = $_POST["lnamec"];
 $lname = $_POST["lname"];
 $carecardnum = $_POST["carecardnum"];
 $carecardnumc = $_POST["carecardnumc"];
-$agec = $_POST["agc"];
+$agec = $_POST["agec"];
 $age = $_POST["age"];
 $sexc = $_POST["sexc"];
 $addressc = $_POST["addressc"];
@@ -75,6 +75,7 @@ if (empty($where) || !isset($where)) {
 }
 
 $sql = "SELECT $select from $tbl_name WHERE $where";
+echo "$sql";
 $result = $conn->query($sql);
 $data = array();
 

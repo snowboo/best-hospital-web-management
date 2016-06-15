@@ -5,6 +5,7 @@ session_start();
 include '../../resources/ChromePhp.php';
 include '../../resources/config.php';
 
+require_once('../../resources/templates/nurseheader.php');
 ?>
 
 <form method="post" action="patient_byFloor_filter.php">

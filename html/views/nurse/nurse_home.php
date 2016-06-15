@@ -4,6 +4,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/resources/ChromePhp.php");
 
 //include '../../resources/config.php';
 //include '../../resources/ChromePhp.php';
+require_once('../../resources/templates/nurseheader.php');
 
 session_start();
 //ChromePhp::log($_SESSION['myusername']);
@@ -25,13 +26,10 @@ $allRoomRow = $allRoomResult->fetch_assoc();
 
 <html>
     <body>
-    Nurse Homepage
     <h3>Available Rooms:</h3>
     <h2><?php echo $roomRow['count(*)']
     . " / " . $allRoomRow['count(*)']; ?></h2>
 
-    <a class="btn btn-success" href="room_management.php">Room Management</a>
-    <a class="btn btn-success" href="patient_byFloor_search.php">Check Floor Capacity</a>
     </body>
 </html>
 

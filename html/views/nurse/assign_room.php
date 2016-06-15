@@ -25,15 +25,6 @@ if ((!isset($roomnum) || empty($roomnum)) ||
         </script>';
 }
 
-// Don't think it'll hit this case so I stopped error handling l0l
-if ($roomnum > 3 || $roomnum < 1 || !is_int($roomnum)) {
-     echo '<script type="text/javascript">
-         alert("Please enter int for roomnum");
-         window.location= "room_management.php"; 
-        </script>';
-
-}
-
 $sql="select * from Room_Assignedto r, Patient_Attendedby p2 where
  r.roomnum = $roomnum AND
  floornum = $floornum AND

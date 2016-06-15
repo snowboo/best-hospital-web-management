@@ -8,6 +8,7 @@ session_start();
 include($_SERVER["DOCUMENT_ROOT"] . "/resources/config.php");
 include($_SERVER["DOCUMENT_ROOT"] . "/resources/ChromePhp.php");
 //ChromePhp::log($_SESSION['myusername']);
+require_once('../../resources/templates/nurseheader.php');
 //ChromePhp::log($_SESSION['role']);
 if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "nurse") {
   header("location:../../login.php");
@@ -29,8 +30,6 @@ $count = $result->num_rows;
 
 <html>
     <body>
-    Nurse Homepage
-
 <h3>Room Data</h3>
 <table class="table table-hover">
     <tr>
