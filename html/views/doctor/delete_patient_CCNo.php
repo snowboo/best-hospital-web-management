@@ -18,12 +18,11 @@ if($carecardnum > 999 && $carecardnum < 10000) {
 }
 
 if (is_int($carecardnum) == FALSE || $conn->query($sql) === FALSE){
-   echo "Error deleting record: ".$conn->error;
-    /*$err_not_found = "No Existing Patient With This Care Card Number or Is Invalid";
+    $err_not_found = "No Existing Patient With This Care Card Number or Is Invalid";
     echo '<script type="text/javascript">
             alert("'.$err_not_found.'");
             window.location ="delete_patient.php";
-          </script>';*/
+          </script>';
 
 } else if ($conn->query($sql) === TRUE) {
     echo '<script type="text/javascript">

@@ -16,15 +16,20 @@ $patientQuery = "SELECT fname as 'First Name', lname as 'Last Name', age as 'Age
                         sex as 'Sex', carecardnum as 'Care Card Number', eid as 'Doctor ID'
                     FROM Patient_Attendedby 
                     WHERE eid='$myEID';";
+
 $patientResult = $conn->query($patientQuery);
+$patientCount = $patientResult->num_rows;
 
 $data = array();
+
 
 while($row = $patientResult->fetch_assoc()) {
     $data[] = $row;
 }
 
+if ($patientCount > 0) {
 $colNames = array_keys(reset($data));
+}
 
 // query for all patients
 $allPatientsQuery = "SELECT * FROM Patient_Attendedby";
@@ -41,9 +46,13 @@ while($allRow = $allResult->fetch_assoc()) {
     <tr>
         <?php
            // print the header
+            if ($patientCount < 1) {
+                echo "No Patients";
+            } else {
            foreach($colNames as $colName) {
               echo "<th> $colName </th>";
            }
+       }
         ?>
     </tr>
     <?php

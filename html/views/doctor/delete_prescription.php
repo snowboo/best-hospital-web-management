@@ -19,21 +19,28 @@ $sql = "SELECT ps.prescriptionID as 'P.ID', pat.fname as 'First Name', pat.lname
         WHERE pat.carecardnum = ps.carecardnum AND $myEID = ps.eid AND ps.prescriptionID = p.prescriptionID;";
 
 $result = $conn->query($sql);
+$count = $result->num_rows;
 $data = array();
 while($row = $result->fetch_assoc()) {
     $data[] = $row;
 }
+if ($count > 0) {
 $colNames = array_keys(reset($data));
+}
 
 ?>
-<h3>My Current Patients's Perscriptions</h3>
+<h3>My Current Patients's Prescriptions</h3>
 <table border="1">
     <tr>
         <?php
            // print the header
-           foreach($colNames as $colName) {
+        if ($count < 1) {
+            echo "No Existing Prescriptions";
+        } else {
+            foreach($colNames as $colName) {
               echo "<th> $colName </th>";
            }
+       }
         ?>
     </tr>
     <?php
@@ -52,9 +59,9 @@ $colNames = array_keys(reset($data));
 <h3>Delete Prescription</h3>
 <form method="post" action="delete_prescription_ID.php">
     Perscription ID:
-    <input type="number" name="PID" id="PID">
+    <input type="text" name="PID" id="PID">
     Care Card Number:
-    <input type="number" name="carecardnum" id="carecardnum">
+    <input type="text" name="carecardnum" id="carecardnum">
     <input type="submit" name="submit" value="submit">
 </form>
 

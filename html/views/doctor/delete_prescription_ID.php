@@ -18,16 +18,15 @@ $result = $conn->query($sql);
 
 
 if($PID >= 0) {
-	$PID = (int) $PID;
+	$PID=(int) $PID;
 }
 
-if (is_numeric ($PID) == FALSE || $conn->query($sql) === FALSE){
-	echo "Error deleting record: ".$conn->error;
-	 /*$err_not_found = "This Is Not A Valid Prescription ID";
+if (is_int($PID) == FALSE || $conn->query($sql) === FALSE){
+	   $err_not_found = "This Is Not A Valid Prescription ID";
     	echo '<script type="text/javascript">
             alert("'.$err_not_found.'");
             window.location="delete_prescription.php";
-          </script>';*/
+          </script>';
 
 } else if ($conn->query($sql) === TRUE) {
 	echo '<script type="text/javascript">

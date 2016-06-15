@@ -20,11 +20,15 @@ $sql = "SELECT m.mid as 'Record ID', pat.fname as 'First Name', pat.lname 'Last 
         WHERE pat.carecardnum = m.carecardnum AND $myEID = pat.eid;";
 
 $result = $conn->query($sql);
+$count = $result->num_rows;
 $data = array();
 while($row = $result->fetch_assoc()) {
     $data[] = $row;
 }
+
+if ($count > 0) {
 $colNames = array_keys(reset($data));
+}
 
 ?>
 <h3>My Current Patients's Medical Records</h3>
@@ -32,9 +36,13 @@ $colNames = array_keys(reset($data));
     <tr>
         <?php
            // print the header
+            if ($count < 1) {
+                echo "No Existing Medical Records";
+            } else {
            foreach($colNames as $colName) {
               echo "<th> $colName </th>";
            }
+       }
         ?>
     </tr>
     <?php
@@ -53,9 +61,9 @@ $colNames = array_keys(reset($data));
 <h3>Delete Medical Records</h3>
 <form method="post" action="delete_MID.php">
     Medical Record ID:
-    <input type="number" name="MID" id="MID">
+    <input type="text" name="MID" id="MID">
     Care Card Number:
-    <input type="number" name="carecardnum" id="carecardnum">
+    <input type="text" name="carecardnum" id="carecardnum">
     <input type="submit" name="submit" value="submit">
 </form>
 

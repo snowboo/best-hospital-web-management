@@ -18,17 +18,16 @@ $sql = "DELETE FROM $tbl_name WHERE mid='$MID' AND carecardnum=$carecardnum;";
 $result = $conn->query($sql);
 
 
-if($MID > 0) {
-  $MID = (int) $MID;
+if($MID >= 0) {
+  $MID=(int) $MID;
 }
 
 if (is_int($MID) == FALSE || $conn->query($sql) === FALSE){
-    echo "Error deleting record: ".$conn->error;
-    /*$err_not_found = "This Is Not A Valid Prescription ID";
+    $err_not_found = "This Is Not A Valid Prescription ID";
     echo '<script type="text/javascript">
             alert("'.$err_not_found.'");
             window.location="delete_MR.php";
-          </script>';*/
+          </script>';
 
 } else if ($conn->query($sql) === TRUE) {
 	echo '<script type="text/javascript">
@@ -36,7 +35,6 @@ if (is_int($MID) == FALSE || $conn->query($sql) === FALSE){
             window.location="delete_MR.php";
           </script>';
 }
-
 ?>
 
 
