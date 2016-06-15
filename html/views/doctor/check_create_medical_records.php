@@ -29,14 +29,28 @@ VALUES ('$mid', '$medicalStatus', '$carecardnum')
 
 $result = $conn->query($sql);
 
-	$new_medical_record_msg = "New Medical Record has been created";
+	// $new_medical_record_msg = "New Medical Record has been created";
+ //            echo '<script type="text/javascript">
+ //            alert("'.$new_medical_record_msg.'");
+ //            window.location= "doctor_patients.php";
+ //        </script>';
+
+     $testCount = $result->num_rows;
+
+if ($testCount > 0) {
+    $new_medical_record_msg = "New Medical Record has been created";
             echo '<script type="text/javascript">
             alert("'.$new_medical_record_msg.'");
             window.location= "doctor_patients.php";
         </script>';
-
-
-
+}
+else {
+	$error_msg = "Choose a different Medical Record ID";
+            echo '<script type="text/javascript">
+            alert("'.$error_msg.'");
+            window.location= "doctor_patients.php";
+        </script>';
+}
 ?>
 
 

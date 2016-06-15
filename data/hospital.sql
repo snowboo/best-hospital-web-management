@@ -143,10 +143,10 @@ create table Prescribes(eid INTEGER,
     CHECK (carecardnum < 10000 AND carecardnum > 999));
 
 insert into Prescribes values (1, 0, 1234, '2015-04-13 11:11:11');
-insert into Prescribes values (1, 1, 1234, '2015-04-14 11:11:11');
-insert into Prescribes values (1, 2, 1234, '2015-04-11 11:11:11');
-insert into Prescribes values (1, 3, 1234, '2015-02-13 11:11:11');    
-insert into Prescribes values (1, 4, 1234, '2015-03-13 11:11:11');    
+insert into Prescribes values (1, 1, 1234, '2015-04-14 11:11:03');
+insert into Prescribes values (1, 2, 1234, '2015-04-11 11:11:01');
+insert into Prescribes values (1, 3, 1234, '2015-02-13 11:10:03');    
+insert into Prescribes values (1, 4, 1234, '2015-03-13 11:10:02');    
 insert into Prescribes values (1, 1, 2345, '2015-06-13 11:11:09');
 insert into Prescribes values (2, 3, 8204, '2015-05-13 11:11:10');
 insert into Prescribes values (3, 4, 2920, '2015-07-13 11:11:12');
