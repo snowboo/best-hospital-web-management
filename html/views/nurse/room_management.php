@@ -13,7 +13,8 @@ require_once('../../resources/templates/nurseheader.php');
 if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "nurse") {
   header("location:../../login.php");
 }
-$sql="SELECT * FROM Room_Assignedto;";
+$sql="SELECT * FROM Room_Assignedto
+  ORDER BY floornum ASC";
 $result = $conn->query($sql);
 
 $data = array();
