@@ -21,22 +21,6 @@ WHERE carecardnum = '$cardnum';
 
 $medicalRecordResult = $conn->query($medicalRecordQuery);
 
-// if (mysqli_num_rows($medicalRecordResult) == 0) { 
-//    //results are empty, do something here 
-            
-// } else { 
-//     while($admin_row = mysqli_fetch_array($medicalRecordResult)) { 
-//       //processing when you have some data 
-//     $data = array();
-
-//     while($row = $medicalRecordResult->fetch_assoc()) {
-//     $data[] = $row;
-//     }
-
-//     $colNames = array_keys(reset($data));
-//     }  
-// }
-
 $recordCount = $medicalRecordResult->num_rows;
 
 $data = array();
@@ -113,7 +97,7 @@ if ($recordCount > 0) {
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td><input class="btn btn-success" type="submit" name="submit" value="Submit">
-                        <button class="btn btn-warning" onclick="history.go(-1);">Cancel </button></td>
+                        <a class="btn btn-warning" href="doctor_patients.php">Cancel </a></td>
                     </tr>
 
                     </table>
