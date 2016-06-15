@@ -1,4 +1,7 @@
 <?php
+session_start();
+?>
+<?php
 include($_SERVER['DOCUMENT_ROOT'] . "/resources/config.php");
 include($_SERVER['DOCUMENT_ROOT'] . "/resources/ChromePhp.php");
 
@@ -6,7 +9,6 @@ include($_SERVER['DOCUMENT_ROOT'] . "/resources/ChromePhp.php");
 //include '../../resources/ChromePhp.php';
 require_once('../../resources/templates/nurseheader.php');
 
-session_start();
 //ChromePhp::log($_SESSION['myusername']);
 //ChromePhp::log($_SESSION['role']);
 if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "nurse") {
