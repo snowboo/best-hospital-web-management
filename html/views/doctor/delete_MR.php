@@ -5,6 +5,7 @@ session_start();
 include '../../resources/ChromePhp.php';
 include '../../resources/config.php';
 require_once('../../resources/templates/doctorheader.php');
+//require_once($_SERVER["DOCUMENT_ROOT"] ."/resources/templates/doctorheader.php");
 
 // check if user is a doctor 
 if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
@@ -12,42 +13,31 @@ if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
 }
 
 $myEID = $_SESSION['mypassword'];
-$patientQuery = "SELECT fname as 'First Name', lname as 'Last Name', age as 'Age',
-                        sex as 'Sex', carecardnum as 'Care Card Number', eid as 'Doctor ID'
-                    FROM Patient_Attendedby 
-                    WHERE eid='$myEID';";
 
-$patientResult = $conn->query($patientQuery);
-$patientCount = $patientResult->num_rows;
+// query for all my patients
+$sql = "SELECT m.mid as 'Record ID', pat.fname as 'First Name', pat.lname 'Last Name', pat.carecardnum 'CareCard Number', m.medicalStatus as 'Status' 
+        FROM Patient_Attendedby pat, MedicalRecord_Has m
+        WHERE pat.carecardnum = m.carecardnum AND $myEID = pat.eid;";
 
+$result = $conn->query($sql);
+$count = $result->num_rows;
 $data = array();
-
-
-while($row = $patientResult->fetch_assoc()) {
+while($row = $result->fetch_assoc()) {
     $data[] = $row;
 }
 
-if ($patientCount > 0) {
+if ($count > 0) {
 $colNames = array_keys(reset($data));
 }
 
-// query for all patients
-$allPatientsQuery = "SELECT * FROM Patient_Attendedby";
-$allResult = $conn->query($allPatientsQuery);
-
-$allData = array();
-while($allRow = $allResult->fetch_assoc()) {
-    $allData[] = $allRow;
-}
-
 ?>
-<h3>My Current Patients</h3>
+<h3>My Current Patients's Medical Records</h3>
 <table border="1">
     <tr>
         <?php
            // print the header
-            if ($patientCount < 1) {
-                echo "No Patients";
+            if ($count < 1) {
+                echo "No Existing Medical Records";
             } else {
            foreach($colNames as $colName) {
               echo "<th> $colName </th>";
@@ -68,9 +58,11 @@ while($allRow = $allResult->fetch_assoc()) {
 </table>
 
 </br>
-<h3>Remove Patient</h3>
-<form method="post" action="delete_patient_CCNo.php">
-    CareCard Number:
+<h3>Delete Medical Records</h3>
+<form method="post" action="delete_MID.php">
+    Medical Record ID:
+    <input type="text" name="MID" id="MID">
+    Care Card Number:
     <input type="text" name="carecardnum" id="carecardnum">
     <input type="submit" name="submit" value="submit">
 </form>

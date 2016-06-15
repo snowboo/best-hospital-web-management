@@ -12,7 +12,7 @@ include($_SERVER["DOCUMENT_ROOT"] . "/resources/ChromePhp.php");
 if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "nurse") {
   header("location:../../login.php");
 }
-$sql="SELECT * FROM Room_Assignedto";
+$sql="SELECT * FROM Room_Assignedto;";
 $result = $conn->query($sql);
 
 $data = array();

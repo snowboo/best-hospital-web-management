@@ -90,6 +90,7 @@ create table Room_Assignedto(floornum INTEGER,
     PRIMARY KEY (floornum, roomnum),
     FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum)
     ON DELETE SET NULL,
+    UNIQUE(carecardnum),
     CHECK (carecardnum < 10000 AND carecardnum > 999),
     CHECK (roomnum >= 1 AND roomnum <= 30),
     CHECK (floornum>= 1 AND floornum <= 20));
@@ -135,11 +136,9 @@ create table Prescribes(eid INTEGER,
     carecardnum INTEGER,
     loggedDate DATE,
     PRIMARY KEY (eid, prescriptionID, carecardnum),
-    FOREIGN KEY fk_employee(eid) REFERENCES Employee(eid),
-    FOREIGN KEY fk_prescription(prescriptionID) REFERENCES Prescription(prescriptionID) 
-    ON DELETE CASCADE,
-    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum)
-    ON DELETE CASCADE,
+    FOREIGN KEY fk_employee(eid) REFERENCES Employee(eid) ON DELETE CASCADE,
+    FOREIGN KEY fk_prescription(prescriptionID) REFERENCES Prescription(prescriptionID) ON DELETE CASCADE,
+    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum) ON DELETE CASCADE,
     CHECK (carecardnum < 10000 AND carecardnum > 999));
 
 insert into Prescribes values (1, 0, 1234, '2015-04-13 11:11:11');
@@ -180,10 +179,8 @@ insert into ChecksIn values (14, 5620);
 
 create table ManagedBy(loggedDate TIMESTAMP, mid INTEGER, carecardnum INTEGER, eid INTEGER,
     PRIMARY KEY (mid, carecardnum, eid),
-    FOREIGN KEY fk_medicalrecord(mid) REFERENCES MedicalRecord_Has(mid)
-    ON DELETE CASCADE,
-    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum)
-    ON DELETE CASCADE,
+    FOREIGN KEY fk_medicalrecord(mid) REFERENCES MedicalRecord_Has(mid) ON DELETE CASCADE,
+    FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum) ON DELETE CASCADE,
     FOREIGN KEY fk_employee(eid) REFERENCES Employee(eid),
     CHECK (carecardnum<10000 AND carecardnum > 999));
 

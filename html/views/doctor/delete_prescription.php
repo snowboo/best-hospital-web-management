@@ -12,35 +12,35 @@ if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
 }
 
 $myEID = $_SESSION['mypassword'];
-$patientQuery = "SELECT * FROM Patient_Attendedby WHERE eid = '$myEID'";
-$patientResult = $conn->query($patientQuery);
 
+// query for all my patients
+$sql = "SELECT ps.prescriptionID as 'P.ID', pat.fname as 'First Name', pat.lname 'Last Name', pat.carecardnum 'CareCard Number', p.drugID 'Drug ID', p.dosage 'Dosage',ps.loggedDate 'Date'
+         FROM Patient_Attendedby pat, Prescribes ps, Prescription p 
+        WHERE pat.carecardnum = ps.carecardnum AND $myEID = ps.eid AND ps.prescriptionID = p.prescriptionID;";
+
+$result = $conn->query($sql);
+$count = $result->num_rows;
 $data = array();
-
-while($row = $patientResult->fetch_assoc()) {
+while($row = $result->fetch_assoc()) {
     $data[] = $row;
 }
-
+if ($count > 0) {
 $colNames = array_keys(reset($data));
-
-// query for all patients
-$allPatientsQuery = "SELECT * FROM Patient_Attendedby";
-$allResult = $conn->query($allPatientsQuery);
-
-$allData = array();
-while($allRow = $allResult->fetch_assoc()) {
-    $allData[] = $allRow;
 }
 
 ?>
-<h3>My Current Patients's Perscriptions</h3>
+<h3>My Current Patients's Prescriptions</h3>
 <table border="1">
     <tr>
         <?php
            // print the header
-           foreach($colNames as $colName) {
+        if ($count < 1) {
+            echo "No Existing Prescriptions";
+        } else {
+            foreach($colNames as $colName) {
               echo "<th> $colName </th>";
            }
+       }
         ?>
     </tr>
     <?php
@@ -56,9 +56,11 @@ while($allRow = $allResult->fetch_assoc()) {
 </table>
 
 </br>
-<h3>Delete Perscription</h3>
-<form method="post" action="delete_perscription_ID.php">
-    CareCard Number:
+<h3>Delete Prescription</h3>
+<form method="post" action="delete_prescription_ID.php">
+    Perscription ID:
+    <input type="text" name="PID" id="PID">
+    Care Card Number:
     <input type="text" name="carecardnum" id="carecardnum">
     <input type="submit" name="submit" value="submit">
 </form>

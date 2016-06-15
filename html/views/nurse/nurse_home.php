@@ -31,7 +31,7 @@ $allRoomRow = $allRoomResult->fetch_assoc();
     . " / " . $allRoomRow['count(*)']; ?></h2>
 
     <a class="btn btn-success" href="room_management.php">Room Management</a>
-    <a class="btn btn-success" href="patient_byFloor_search.php">Room Management</a>
+    <a class="btn btn-success" href="patient_byFloor_search.php">Check Floor Capacity</a>
     </body>
 </html>
 

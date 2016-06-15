@@ -3,7 +3,10 @@ session_start();
 
 include '../../resources/ChromePhp.php';
 include '../../resources/config.php';
-require_once($_SERVER["DOCUMENT_ROOT"] ."/resources/templates/doctorheader.php");
+
+require_once('../../resources/templates/doctorheader.php');
+// require_once($_SERVER["DOCUMENT_ROOT"] ."/resources/templates/doctorheader.php");
+
 
 if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
     header("location:../../login.php");
@@ -19,7 +22,7 @@ if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "doctor") {
 $myEID = $_SESSION['mypassword'];
 
 //query for my patients
-$patientQuery = "SELECT * FROM Patient_Attendedby WHERE eid = '$myEID'";
+$patientQuery = "SELECT * FROM Patient_Attendedby WHERE eid = '$myEID';";
 $patientResult = $conn->query($patientQuery);
 
 $patientCount = $patientResult->num_rows;
@@ -31,7 +34,7 @@ while($row = $patientResult->fetch_assoc()) {
 }
 
 // query for all patients
-$allPatientsQuery = "SELECT * FROM Patient_Attendedby";
+$allPatientsQuery = "SELECT * FROM Patient_Attendedby;";
 $allResult = $conn->query($allPatientsQuery);
 
 $allData = array();
@@ -52,7 +55,7 @@ WHERE NOT EXISTS
     WHERE PTN.prescriptionID NOT IN
     (SELECT P.prescriptionID
     FROM Prescribes P
-    WHERE P.carecardnum = PA.carecardnum))";
+    WHERE P.carecardnum = PA.carecardnum));";
 
 $specialAttentionResult  = $conn->query($specialAttentionQuery);
 
@@ -90,9 +93,8 @@ while($specialAttentionRow = $specialAttentionResult->fetch_assoc()) {
 </table>
 
 <a class="btn btn-success" href="delete_patient.php">Remove Patient</a>
-<a class="btn btn-success" href="delete_prescrption.php">Delete Prescrption</a>
-<a class="btn btn-success" href="delete_medicalRecord.php">Delete Medical Record</a>
-
+<a class="btn btn-success" href="delete_prescription.php">Delete Prescription</a>
+<a class="btn btn-success" href="delete_MR.php">Delete Medical Record</a>
 
 <h3>All Patients</h3>
 <table class="table table-hover">

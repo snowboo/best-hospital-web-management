@@ -10,11 +10,11 @@ $tbl_name="Patient_Attendedby"; // Table name
 $carecardnum = $_POST['carecardnum'];
 
 // delete a record 
-$sql = "DELETE FROM $tbl_name t1 WHERE t1.carecardnum = $carecardnum";
+$sql = "DELETE FROM $tbl_name WHERE carecardnum='$carecardnum';";
 $result = $conn->query($sql);
 
 if($carecardnum > 999 && $carecardnum < 10000) {
-	$carecardnum = (int) $carecardnum;
+	$carecardnum=(int) $carecardnum;
 }
 
 if (is_int($carecardnum) == FALSE || $conn->query($sql) === FALSE){
