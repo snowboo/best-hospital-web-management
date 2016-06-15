@@ -13,7 +13,8 @@ require_once('../../resources/templates/nurseheader.php');
 if (!isset($_SESSION['myusername']) || $_SESSION['role'] != "nurse") {
   header("location:../../login.php");
 }
-$sql="SELECT * FROM Room_Assignedto
+$sql="SELECT floornum as 'Floor Level', roomnum as 'Room Number', carecardnum as 'Carecard Number'
+  FROM Room_Assignedto
   ORDER BY floornum ASC";
 $result = $conn->query($sql);
 
@@ -57,14 +58,14 @@ $count = $result->num_rows;
           <table>
             <tr> Assign Patient to Room </tr>
             <tr>
-              <td> Room Number </td>
-              <td><input class="form-control" name="roomnum" type="number" id="roomnum" min="1" max="3"></td>
-            </tr>
-            <tr>
               <td> Floor Number </td>
               <td><input class="form-control" name="floornum" type="number" id="floornum" min="1" max="3"></td>
-            </tr>
-            <tr>
+           </tr>
+           <tr>
+              <td> Room Number </td>
+              <td><input class="form-control" name="roomnum" type="number" id="roomnum" min="1" max="3"></td>
+           </tr>
+           <tr>
               <td> Paient CareCard Number </td>
               <td><input class="form-control" name="carecardnum" type="number" id="carecardnum" min="1000" max="9999"></td>
             <tr>
