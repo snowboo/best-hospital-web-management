@@ -13,9 +13,8 @@ $tbl_name="Prescribes"; // Table name
 $pid = $_POST['pid'];
 $carecardnum= $_POST['carecardnum'];
 
-// delete a record 
-
-
+// delete a record (the related patient should not be deleted)
+// DELETION QUERY (NOT ON CASCADE)
 $check = "SELECT * FROM $tbl_name WHERE prescriptionID='$pid' AND carecardnum=$carecardnum;";
 $result = $conn->query($check);
 $count = $result->num_rows;

@@ -12,8 +12,8 @@ $tbl_name="MedicalRecord_Has"; // Table name
 $mid = $_POST['mid'];
 $carecardnum= $_POST['carecardnum'];
 
-// delete a record 
-
+// delete a record (the related patient should not be deleted)
+// DELETION QUERY (NOT ON CASCADE)
 $check = "SELECT mid FROM tbl_name WHERE carecardnum=$carecardnum AND mid='$mid';";
 $result = $conn->query($check);
 $count = $result->num_rows;

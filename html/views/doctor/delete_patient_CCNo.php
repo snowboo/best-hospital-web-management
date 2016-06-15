@@ -9,7 +9,9 @@ include '../../resources/config.php';
 $tbl_name="Patient_Attendedby"; // Table name
 $carecardnum = $_POST['carecardnum'];
 
-// delete a record 
+// delete a record (when a patient is deleted, the medical records and prescribed prescriptions
+// under their carecardnum should also be deleted)
+// DELETION QUERY (ON CASCADE)
 $sql = "DELETE FROM $tbl_name WHERE carecardnum='$carecardnum';";
 $result = $conn->query($sql);
 
