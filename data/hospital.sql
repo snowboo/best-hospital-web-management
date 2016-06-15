@@ -92,8 +92,8 @@ create table Room_Assignedto(floornum INTEGER,
     ON DELETE SET NULL,
     UNIQUE(carecardnum),
     CHECK (carecardnum < 10000 AND carecardnum > 999),
-    CHECK (roomnum >= 1 AND roomnum <= 30),
-    CHECK (floornum>= 1 AND floornum <= 20));
+    CHECK (roomnum >= 1 AND roomnum <= 3),
+    CHECK (floornum>= 1 AND floornum <= 3));
 
 insert into Room_Assignedto values (1, 1, null);
 insert into Room_Assignedto values (1, 2, null);
