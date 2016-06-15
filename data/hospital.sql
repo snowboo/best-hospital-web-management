@@ -90,6 +90,7 @@ create table Room_Assignedto(floornum INTEGER,
     PRIMARY KEY (floornum, roomnum),
     FOREIGN KEY fk_patient(carecardnum) REFERENCES Patient_Attendedby(carecardnum)
     ON DELETE SET NULL,
+    UNIQUE(carecardnum),
     CHECK (carecardnum < 10000 AND carecardnum > 999),
     CHECK (roomnum >= 1 AND roomnum <= 30),
     CHECK (floornum>= 1 AND floornum <= 20));
