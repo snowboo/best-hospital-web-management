@@ -30,7 +30,7 @@ $colNames = array_keys(reset($data));
 
 ?>
 <h3>My Current Patients's Prescriptions</h3>
-<table border="1">
+<table class="table table-hover">
     <tr>
         <?php
            // print the header
