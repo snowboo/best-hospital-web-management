@@ -15,14 +15,14 @@ $carecardnum= $_POST['carecardnum'];
 
 // delete a record (the related patient should not be deleted)
 // DELETION QUERY (NOT ON CASCADE)
-$check = "SELECT * FROM $tbl_name WHERE prescriptionID='$pid' AND carecardnum=$carecardnum;";
+$check = "SELECT * FROM $tbl_name WHERE carecardnum=$carecardnum AND prescriptionID='$pid';";
 $result = $conn->query($check);
 $count = $result->num_rows;
 
 if ($count > 0) {
   $sql = "DELETE FROM $tbl_name WHERE prescriptionID='$pid';";
 
-} else {
+} else if ($count == 0){
    $err_not_found = "There is no prescription under this ID for this Patient";
     echo '<script type="text/javascript">
             alert("'.$err_not_found.'");

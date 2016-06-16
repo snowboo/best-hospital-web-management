@@ -14,12 +14,12 @@ $carecardnum= $_POST['carecardnum'];
 
 // delete a record (the related patient should not be deleted)
 // DELETION QUERY (NOT ON CASCADE)
-$check = "SELECT mid FROM tbl_name WHERE carecardnum=$carecardnum AND mid='$mid';";
+$check = "SELECT * FROM $tbl_name WHERE carecardnum=$carecardnum AND mid='$mid';";
 $result = $conn->query($check);
 $count = $result->num_rows;
 
 if ($count > 0){
-  $sql = "DELETE FROM tbl_name WHERE mid='$mid';";
+  $sql = "DELETE FROM $tbl_name WHERE mid='$mid';";
 
 } else {
   $err_not_found = "There is no valid medical record under this ID for this patient";
