@@ -94,7 +94,7 @@ while($specialAttentionRow = $specialAttentionResult->fetch_assoc()) {
 
 <a class="btn btn-success" href="delete_patient.php">Remove Patient</a>
 <a class="btn btn-success" href="delete_prescription.php">Delete Prescription</a>
-<a class="btn btn-success" href="delete_MR.php">Delete Medical Record</a>
+<a class="btn btn-success" href="delete_mr.php">Delete Medical Record</a>
 
 <h3>All Patients</h3>
 <table class="table table-hover">
