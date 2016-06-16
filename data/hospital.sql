@@ -151,6 +151,7 @@ insert into Prescribes values (1, 1, 2345, '2015-06-13 11:11:09');
 insert into Prescribes values (2, 3, 8204, '2015-05-13 11:11:10');
 insert into Prescribes values (3, 4, 2920, '2015-07-13 11:11:12');
 insert into Prescribes values (5, 2, 5620, '2015-04-17 11:11:13');
+insert into Prescribes values (5, 3, 5620, '2015-04-17 11:11:14');
 
 create table MedicalRecord_Has(mid INTEGER, medicalStatus TEXT, carecardnum INTEGER,
     PRIMARY KEY (mid, carecardnum), 
